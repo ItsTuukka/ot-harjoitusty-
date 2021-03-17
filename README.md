@@ -2,4 +2,5 @@
 
 **Viikko 1**
 
-https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/gitlog.txt
+[gitlog.txt](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/gitlog.txt)
+[komentorivi.txt](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/komentorivi.txt)
