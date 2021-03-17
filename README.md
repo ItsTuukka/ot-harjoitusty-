@@ -1,6 +1,5 @@
-# Ehkä otsikko?
+# Tehtäviä
 
-*tässä kai jotain pitäisi löytyä*
-**ehkä tämä jopa boldattuna**
+**Viikko 1**
 
-???
+https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/gitlog.txt
