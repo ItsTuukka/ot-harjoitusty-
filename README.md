@@ -11,6 +11,8 @@
 
 ### Viikko 2
 
+-[testikattavuus](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/viikko2/testikattavuusv2.png)
+
 ## Harjoitustyö
 
 Harjoitustyön aiheena on kahden pelattava shakki.
