@@ -15,6 +15,6 @@
 
 ## Harjoitustyö
 
-Harjoitustyön aiheena on kahden pelattava shakki.
+Harjoitustyön aiheena on kaksinpelattava shakki.
 - [vaativuusmäärittely](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/vaatimuusm%C3%A4%C3%A4rittely.md)
 - [työaikakirjanpito](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/ty%C3%B6aikakirjanpito.md)
