@@ -22,7 +22,8 @@ def main():
             if e.type == p.MOUSEBUTTONDOWN:
                 position = p.mouse.get_pos()
                 pos_sq = (position[0]//64, position[1]//64)
-                player_clicks.append((pos_sq[0],pos_sq[1]))
+                if BS.boardstate[pos_sq[1]][pos_sq[0]] != "":
+                    player_clicks.append((pos_sq[0],pos_sq[1]))
                 if len(player_clicks) == 2:
                     movePiece(player_clicks[0],player_clicks[1], BS.boardstate)
                     player_clicks = []
@@ -54,19 +55,7 @@ def movePiece(s_pos, d_pos, boardstate):
     piece = boardstate[s_pos[1]][s_pos[0]]
     changeBoardState(piece, s_pos, d_pos)
 
-def changeBoardState(piece, s_pos, d_pos):
-        if BS.moveWhite:
-            if piece[0] == "b":
-                return
-            BS.boardstate[s_pos[1]][s_pos[0]] == ""
-            BS.boardstate[d_pos[1]][d_pos[0]] = piece
-            BS.moveWhite = False
-        else:
-            if piece[0] == "w":
-                return
-            BS.boardstate[s_pos[1]][s_pos[0]] == ""
-            BS.boardstate[d_pos[1]][d_pos[0]] = piece
-            BS.moveWhite = True
+
 
 
     
