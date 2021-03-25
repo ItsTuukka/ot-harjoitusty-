@@ -14,7 +14,6 @@ screen = p.display.set_mode((width, height))
 def main():
     screen.fill((0,0,0))
     pieces = loadPieces(BS.boardstate)
-    drawBoard()
     player_clicks = []
     while True:
         for e in p.event.get():
@@ -22,22 +21,28 @@ def main():
                 sys.exit()
             if e.type == p.MOUSEBUTTONDOWN:
                 position = p.mouse.get_pos()
-                pos_sq = (position[0]//64, position[1]//64)
+                pos_sq = (position[0]//square, position[1]//square)
                 if BS.boardstate[pos_sq[1]][pos_sq[0]] != "" or len(player_clicks) > 0:
-                    player_clicks.append((pos_sq[0],pos_sq[1]))
+                    if pos_sq in player_clicks:
+                        player_clicks = []
+                    else:
+                        player_clicks.append(pos_sq)
                 if len(player_clicks) == 2:
                     movePiece(player_clicks[0],player_clicks[1], BS.boardstate)
                     player_clicks = []
-        drawPieces(pieces, BS.boardstate)
+        drawBoard(pieces, BS.boardstate)
         clock.tick(fps)
         p.display.flip()
 
-def drawBoard():
+def drawBoard(pieces, boardstate):
     colors = [(235, 235, 208), (119, 148, 85)]
     for row in range(8):
         for colum in range(8):
             color = colors[((row+colum) % 2)]
-            p.draw.rect(screen, color, (row*square, colum*square, square, square))
+            p.draw.rect(screen, color, p.Rect(colum*square, row*square, square, square))
+            piece = boardstate[row][colum]
+            if piece != "":
+                screen.blit(pieces[piece], p.Rect(colum*square, row*square, square, square))
 
 def loadPieces(boardstate):
     pieces = {}
@@ -46,13 +51,6 @@ def loadPieces(boardstate):
             if colum != "":
                 pieces[colum] = p.transform.scale(p.image.load(os.path.join(dirname, "assets/" + colum + ".png")), (square, square))
     return pieces
-
-def drawPieces(pieces, boardstate):
-    for row in range(8):
-        for colum in range(8):
-            piece = boardstate[row][colum]
-            if piece != "":
-                screen.blit(pieces[piece], (colum*square, row*square))
 
 def movePiece(s_pos, d_pos, boardstate):
     piece = boardstate[s_pos[1]][s_pos[0]]
