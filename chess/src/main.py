@@ -2,9 +2,11 @@ import pygame as p
 import sys
 import os
 from gamestate.boardstate import BoardState
+from pieces import Piece
 clock = p.time.Clock()
 fps = 30
 BS = BoardState()
+Piece = Piece()
 width = height = 512
 square = height // 8
 dirname = os.path.dirname(__file__)
@@ -13,7 +15,6 @@ screen = p.display.set_mode((width, height))
 
 def main():
     screen.fill((0,0,0))
-    pieces = loadPieces(BS.boardstate)
     player_clicks = []
     while True:
         for e in p.event.get():
@@ -30,11 +31,11 @@ def main():
                 if len(player_clicks) == 2:
                     movePiece(player_clicks[0],player_clicks[1], BS.boardstate)
                     player_clicks = []
-        drawBoard(pieces, BS.boardstate)
+        drawBoard(BS.boardstate)
         clock.tick(fps)
         p.display.flip()
 
-def drawBoard(pieces, boardstate):
+def drawBoard(boardstate):
     colors = [(235, 235, 208), (119, 148, 85)]
     for row in range(8):
         for colum in range(8):
@@ -42,21 +43,19 @@ def drawBoard(pieces, boardstate):
             p.draw.rect(screen, color, p.Rect(colum*square, row*square, square, square))
             piece = boardstate[row][colum]
             if piece != "":
-                screen.blit(pieces[piece], p.Rect(colum*square, row*square, square, square))
-
-def loadPieces(boardstate):
-    pieces = {}
-    for row in boardstate:
-        for colum in row:
-            if colum != "":
-                pieces[colum] = p.transform.scale(p.image.load(os.path.join(dirname, "assets/" + colum + ".png")), (square, square))
-    return pieces
+                screen.blit(Piece.images[piece], p.Rect(colum*square, row*square, square, square))
 
 def movePiece(s_pos, d_pos, boardstate):
     piece = boardstate[s_pos[1]][s_pos[0]]
-    print(s_pos)
-    print(d_pos)
-    BS.changeBoardState(piece, s_pos, d_pos)
+    if boardstate[d_pos[1]][d_pos[0]] != "":
+        capture = boardstate[d_pos[1]][d_pos[0]]
+    else:
+        capture = ""
+    valid = Piece.isValid(piece, s_pos, d_pos, capture)
+    if valid:
+        BS.changeBoardState(piece, s_pos, d_pos)
+    else:
+        return
 
 
 
