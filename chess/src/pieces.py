@@ -16,7 +16,7 @@ class Piece:
 
     def __init__(self, BS):
         self.images = self.loadimages()
-        self.bs = BS().boardstate
+        self.bs = BS.boardstate
 
 
     def loadimages(self):
