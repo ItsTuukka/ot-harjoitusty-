@@ -1,5 +1,9 @@
 class BoardState:
 
+    """
+    This class is responsible for keeping track of the game/boardstate and making changes to it.
+    """
+
     def __init__(self):
         self.boardstate = [["bR", "bN", "bB","bQ","bK","bB","bN","bR"],
         ["bP","bP","bP","bP","bP","bP","bP","bP"],

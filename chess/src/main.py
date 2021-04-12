@@ -6,10 +6,9 @@ from pieces import Piece
 clock = p.time.Clock()
 fps = 30
 BS = BoardState()
-Piece = Piece()
+Piece = Piece(BS)
 width = height = 512
 square = height // 8
-dirname = os.path.dirname(__file__)
 p.init()
 screen = p.display.set_mode((width, height))
 
@@ -29,28 +28,25 @@ def main():
                     else:
                         player_clicks.append(pos_sq)
                 if len(player_clicks) == 2:
-                    movePiece(player_clicks[0],player_clicks[1], BS.boardstate)
+                    movePiece(player_clicks[0],player_clicks[1])
                     player_clicks = []
-        drawBoard(BS.boardstate)
+        drawBoard()
         clock.tick(fps)
         p.display.flip()
 
-def drawBoard(boardstate):
+def drawBoard():
     colors = [(235, 235, 208), (119, 148, 85)]
     for row in range(8):
         for colum in range(8):
             color = colors[((row+colum) % 2)]
             p.draw.rect(screen, color, p.Rect(colum*square, row*square, square, square))
-            piece = boardstate[row][colum]
+            piece = BS.boardstate[row][colum]
             if piece != "":
                 screen.blit(Piece.images[piece], p.Rect(colum*square, row*square, square, square))
 
-def movePiece(s_pos, d_pos, boardstate):
-    piece = boardstate[s_pos[1]][s_pos[0]]
-    if boardstate[d_pos[1]][d_pos[0]] != "":
-        capture = boardstate[d_pos[1]][d_pos[0]]
-    else:
-        capture = ""
+def movePiece(s_pos, d_pos):
+    piece = BS.boardstate[s_pos[1]][s_pos[0]]
+    capture = BS.boardstate[d_pos[1]][d_pos[0]]
     valid = Piece.isValid(piece, s_pos, d_pos, capture)
     if valid:
         BS.changeBoardState(piece, s_pos, d_pos)
