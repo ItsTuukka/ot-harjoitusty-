@@ -1,12 +1,12 @@
 import pygame as p
 import sys
 import os
-from gamestate.boardstate import BoardState
+from gamestate import GameState
 from pieces import Piece
 clock = p.time.Clock()
 fps = 30
-BS = BoardState()
-Piece = Piece(BS)
+GS = GameState()
+Piece = Piece(GS)
 width = height = 512
 square = height // 8
 p.init()
@@ -22,13 +22,13 @@ def main():
             if e.type == p.MOUSEBUTTONDOWN:
                 position = p.mouse.get_pos()
                 pos_sq = (position[0]//square, position[1]//square)
-                if BS.boardstate[pos_sq[1]][pos_sq[0]] != "" or len(player_clicks) > 0:
+                if GS.boardstate[pos_sq[1]][pos_sq[0]] != "" or len(player_clicks) > 0:
                     if pos_sq in player_clicks:
                         player_clicks = []
                     else:
                         player_clicks.append(pos_sq)
                 if len(player_clicks) == 2:
-                    movePiece(player_clicks[0],player_clicks[1])
+                    Piece.movePiece(player_clicks[0],player_clicks[1])
                     player_clicks = []
         drawBoard()
         clock.tick(fps)
@@ -40,18 +40,10 @@ def drawBoard():
         for colum in range(8):
             color = colors[((row+colum) % 2)]
             p.draw.rect(screen, color, p.Rect(colum*square, row*square, square, square))
-            piece = BS.boardstate[row][colum]
+            piece = GS.boardstate[row][colum]
             if piece != "":
                 screen.blit(Piece.images[piece], p.Rect(colum*square, row*square, square, square))
 
-def movePiece(s_pos, d_pos):
-    piece = BS.boardstate[s_pos[1]][s_pos[0]]
-    capture = BS.boardstate[d_pos[1]][d_pos[0]]
-    valid = Piece.isValid(piece, s_pos, d_pos, capture)
-    if valid:
-        BS.changeBoardState(piece, s_pos, d_pos)
-    else:
-        return
 
 
 

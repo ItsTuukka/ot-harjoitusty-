@@ -1,6 +1,5 @@
 import pygame
 import os
-from gamestate.boardstate import BoardState
 dirname = os.path.dirname(__file__)
 square = 64
 
@@ -14,18 +13,30 @@ class Piece:
     
 
 
-    def __init__(self, BS):
+    def __init__(self, GS):
+        self.GS = GS
+        self.gs = GS.boardstate
         self.images = self.loadimages()
-        self.bs = BS.boardstate
+
 
 
     def loadimages(self):
         pieces = {}
-        for row in self.bs:
+        for row in self.gs:
             for colum in row:
                 if colum != "":
                     pieces[colum] = pygame.transform.scale(pygame.image.load(os.path.join(dirname, "assets/" + colum + ".png")), (square, square))
         return pieces
+    
+
+    def movePiece(self, s_pos, d_pos):
+        piece = self.gs[s_pos[1]][s_pos[0]]
+        capture = self.gs[d_pos[1]][d_pos[0]]
+        valid = self.isValid(piece, s_pos, d_pos, capture)
+        if valid:
+            self.GS.changeBoardState(piece, s_pos, d_pos)
+        else:
+            return
 
 
     def isValid(self, piece, s_pos, d_pos, capture):
@@ -73,7 +84,7 @@ class Piece:
             else:
                 step = 1
             for i in range(d_pos[1]+step, s_pos[1], step):
-                if self.bs[i][s_pos[0]] != "":
+                if self.gs[i][s_pos[0]] != "":
                     return False
             return True
         if s_pos[1] == d_pos[1]:
@@ -82,7 +93,7 @@ class Piece:
             else:
                 step = 1
             for i in range(d_pos[0]+step, s_pos[0], step):
-                if self.bs[s_pos[1]][i] != "":
+                if self.gs[s_pos[1]][i] != "":
                     return False
             return True
         return False

@@ -1,4 +1,4 @@
-class BoardState:
+class GameState:
 
     """
     This class is responsible for keeping track of the game/boardstate and making changes to it.
