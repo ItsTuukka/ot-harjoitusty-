@@ -1,20 +1,48 @@
-# Ohjelmistotekniikan harjoitustyö
+# Shakki
 
-### Tähän repositorioon valmistuu Ohjelmistotekniikka-kurssin harjoitustyö sekä kurssin laskarien tehtävät
+Simppeli shakki kahdelle pelaajalle, joka on toteutettu Pyhonilla.
 
-## Laskarit
+Peli on Ohjelmistotekniikan-kurssilla tehtävä projektityö.
 
-### Viikko 1
+Peli toimii Python-versiolla `3.6` tai uudemmalla.
 
-- [gitlog.txt](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/gitlog.txt)
-- [komentorivi.txt](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/komentorivi.txt)
+### Dokumentaatio
 
-### Viikko 2
-
-- [testikattavuus](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/laskarit/viikko2/testikattavuusv2.png)
-
-## Harjoitustyö
-
-Harjoitustyön aiheena on kaksinpelattava shakki.
 - [vaativuusmäärittely](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/vaatimuusm%C3%A4%C3%A4rittely.md)
 - [työaikakirjanpito](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/ty%C3%B6aikakirjanpito.md)
+
+### Asennus
+
+1. Siirry komentorivillä chess kansioon.
+
+2. Asenna riippuvuudet komennolla
+
+```
+poetry install
+```
+
+3. Käynnistä sovellus komennolla
+
+```
+poetry run invoke start
+```
+
+### Komentorivikomennot
+
+#### Ohjelman voi suorittaa komennolla
+
+```
+poetry run invoke start
+```
+
+#### Ohjelman testit voi suorittaa komennolla
+
+```
+poetry run invoke test
+```
+
+#### Testikattavuusraportin saa luotua komennolla
+
+```
+poetry run invoke coverage-report
+```
