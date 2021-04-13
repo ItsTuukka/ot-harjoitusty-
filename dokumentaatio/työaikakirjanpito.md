@@ -6,4 +6,5 @@
 | 25.3.| 2h  | metodien koodaamista |
 | 11.4.| 2h  | sotilaan liikkuminen ja refaktorointia |
 | 12.4.| 4h  | tornien liikkuminen ja refaktorointia |
-| Yht. | 13h  |
+| 13.4.| 2h  | hevosen ja lähettien liikkeet, sekä refaktorointia |
+| Yht. | 15h  |
