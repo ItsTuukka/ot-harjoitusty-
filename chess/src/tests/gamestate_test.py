@@ -12,6 +12,9 @@ class TestGameState(unittest.TestCase):
         ["wP","wP","wP","wP","wP","wP","wP","wP"],
         ["wR","wN","wB","wQ","wK","wB","wN","wR"]]
         self.GS = GameState()
+    
+    def test_startingTurn(self):
+        self.assertEqual(self.GS.moveWhite, True)
 
     def test_changeturn(self):
         self.GS.changeBoardState("wP", (6,6), (6,5))

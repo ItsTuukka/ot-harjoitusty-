@@ -12,6 +12,10 @@ square = height // 8
 p.init()
 screen = p.display.set_mode((width, height))
 
+"""
+This is the main function that starts the game and goes through user inputs
+"""
+
 def main():
     screen.fill((0,0,0))
     player_clicks = []

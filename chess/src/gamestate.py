@@ -15,6 +15,7 @@ class GameState:
         ["wR","wN","wB","wQ","wK","wB","wN","wR"]]
         self.moveWhite = True
 
+
     def changeBoardState(self, piece, s_pos, d_pos):
         if self.moveWhite:
             if piece[0] == "b":
@@ -28,6 +29,56 @@ class GameState:
             self.boardstate[s_pos[1]][s_pos[0]] = ""
             self.boardstate[d_pos[1]][d_pos[0]] = piece
             self.moveWhite = True
+
+    
+    def betweenDiagonally(self, s_pos, d_pos):
+        dif = abs(s_pos[0]-s_pos[1])
+        if d_pos[0] > s_pos[0]:
+            step = -1
+            if d_pos[1] > s_pos[1]:
+                for i in range(s_pos[0]+1, d_pos[0]):
+                    if self.boardstate[i-dif][i] != "":
+                        return True
+            else:
+                for i in range(s_pos[0]+1, d_pos[0]):
+                    if self.boardstate[s_pos[1]+step][i] != "":
+                        return True
+                    step -= 1
+        else:
+            step = -1
+            if d_pos[1] > s_pos[1]:
+                for i in range(d_pos[0]+1, s_pos[0]):
+                    if self.boardstate[d_pos[1]+step][i] != "":
+                        return True
+                    step -= 1
+            else:
+                for i in range(d_pos[0]+1, s_pos[0]):
+                    if self.boardstate[i+dif][i] != "":
+                        return True
+        return False
+
+
+    def betweenVertically(self, s_pos, d_pos):
+        if d_pos[1] > s_pos[1]:
+            step = 1
+        else:
+            step = -1
+        for i in range(s_pos[1]+step, d_pos[1], step):
+            if self.boardstate[i][s_pos[0]] != "":
+                return True
+        return False
+
+    
+    def betweenHorizontally(self, s_pos, d_pos):
+        if d_pos[0] > s_pos[0]:
+            step = 1
+        else:
+            step = -1
+        for i in range(s_pos[0]+step, d_pos[0], step):
+            if self.boardstate[s_pos[1]][i] != "":
+                return True
+        return False
+
         
 
 

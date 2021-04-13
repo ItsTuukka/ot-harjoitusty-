@@ -42,13 +42,20 @@ class Piece:
     def isValid(self, piece, s_pos, d_pos, capture):
         color = piece[0]
         rank = piece[1]
-        if capture != "" and color == capture[0]:
-            return
+        if capture != "":
+            if capture[0] == color or capture[1] == "K":
+                return
         if rank == "P":
             if self.pawn(color, s_pos, d_pos, capture):
                 return True
+        if rank == "N":
+            if self.knight(s_pos, d_pos):
+                return True
+        if rank == "B":
+            if self.bishop(s_pos, d_pos):
+                return True
         if rank == "R":
-            if self.rook(s_pos, d_pos, capture):
+            if self.rook(s_pos, d_pos):
                 return True
         return False
         
@@ -77,23 +84,35 @@ class Piece:
         return False
 
     
-    def rook(self, s_pos, d_pos, capture):
+    def rook(self, s_pos, d_pos):
         if s_pos[0] == d_pos[0]:
-            if d_pos[1] > s_pos[1]:
-                step = -1
-            else:
-                step = 1
-            for i in range(d_pos[1]+step, s_pos[1], step):
-                if self.gs[i][s_pos[0]] != "":
-                    return False
+            if self.GS.betweenVertically(s_pos, d_pos):
+                return False
             return True
         if s_pos[1] == d_pos[1]:
-            if d_pos[0] > s_pos[0]:
-                step = -1
-            else:
-                step = 1
-            for i in range(d_pos[0]+step, s_pos[0], step):
-                if self.gs[s_pos[1]][i] != "":
-                    return False
+            if self.GS.betweenHorizontally(s_pos, d_pos):
+                return False
             return True
         return False
+
+
+    def knight(self, s_pos, d_pos):
+        if abs(s_pos[0]-d_pos[0]) == 2 and abs(s_pos[1]-d_pos[1]) == 1:
+            return True
+        if abs(s_pos[0]-d_pos[0]) == 1 and abs(s_pos[1]-d_pos[1]) == 2:
+            return True
+        return False
+        
+    
+    def bishop(self, s_pos, d_pos):
+        if abs(s_pos[0]-d_pos[0]) == abs(s_pos[1]-d_pos[1]):
+            if self.GS.betweenDiagonally(s_pos, d_pos):
+                return False
+            return True
+        return False  
+
+
+                    
+
+
+        
