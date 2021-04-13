@@ -63,7 +63,7 @@ class Piece:
     def pawn(self, color, s_pos, d_pos, capture):
         if color == "w":
             if capture != "":
-                if s_pos[1] - d_pos[1] == 1 and abs(s_pos[0]-d_pos[0]):
+                if s_pos[1] - d_pos[1] == 1 and abs(s_pos[0]-d_pos[0]) == 1:
                     return True
             else:
                 if s_pos[1] == 6:
@@ -73,7 +73,7 @@ class Piece:
                     return True
         else:
             if capture != "":
-                if d_pos[1] - s_pos[1] == 1 and abs(s_pos[0]-d_pos[0]):
+                if d_pos[1] - s_pos[1] == 1 and abs(s_pos[0]-d_pos[0]) == 1:
                     return True
             else:
                 if s_pos[1] == 1:
@@ -102,7 +102,7 @@ class Piece:
         if abs(s_pos[0]-d_pos[0]) == 1 and abs(s_pos[1]-d_pos[1]) == 2:
             return True
         return False
-        
+
     
     def bishop(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) == abs(s_pos[1]-d_pos[1]):
