@@ -20,12 +20,16 @@ class GameState:
         if self.moveWhite:
             if piece[0] == "b":
                 return
+            if piece[1] == "P" and d_pos[1] == 0:
+                piece = "wQ"
             self.boardstate[s_pos[1]][s_pos[0]] = ""
             self.boardstate[d_pos[1]][d_pos[0]] = piece
             self.moveWhite = False
         else:
             if piece[0] == "w":
                 return
+            if piece[1] == "P" and d_pos[1] == 7:
+                piece = "bQ"
             self.boardstate[s_pos[1]][s_pos[0]] = ""
             self.boardstate[d_pos[1]][d_pos[0]] = piece
             self.moveWhite = True
