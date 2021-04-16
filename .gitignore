@@ -5,4 +5,4 @@
 __pycache__
 .coverage
 htmlcov
-
+/chess/src/__pycache__
