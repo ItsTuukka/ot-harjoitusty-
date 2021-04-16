@@ -3,10 +3,12 @@ import sys
 import os
 from gamestate import GameState
 from pieces import Piece
+from attack import Attack
 clock = p.time.Clock()
 fps = 30
 GS = GameState()
-Piece = Piece(GS)
+A = Attack(GS)
+Piece = Piece(GS, A)
 width = height = 512
 square = height // 8
 p.init()
@@ -35,6 +37,8 @@ def main():
                     Piece.movePiece(player_clicks[0],player_clicks[1])
                     player_clicks = []
         drawBoard()
+        A.whiteThreatens()
+        A.blackThreatens()
         clock.tick(fps)
         p.display.flip()
 

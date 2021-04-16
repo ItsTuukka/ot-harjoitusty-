@@ -30,7 +30,7 @@ class GameState:
             self.boardstate[d_pos[1]][d_pos[0]] = piece
             self.moveWhite = True
 
-    
+
     def betweenDiagonally(self, s_pos, d_pos):
         dif = abs(s_pos[0]-s_pos[1])
         if d_pos[0] > s_pos[0]:
@@ -79,7 +79,7 @@ class GameState:
                 return True
         return False
 
-        
+
 
 
 

@@ -13,9 +13,10 @@ class Piece:
     
 
 
-    def __init__(self, GS):
+    def __init__(self, GS, Attack):
         self.GS = GS
         self.gs = GS.boardstate
+        self.A = Attack
         self.images = self.loadimages()
 
 
@@ -46,21 +47,27 @@ class Piece:
             if capture[0] == color or capture[1] == "K":
                 return
         if rank == "P":
-            if self.pawn(color, s_pos, d_pos, capture):
+            if self.pawnMove(color, s_pos, d_pos, capture):
                 return True
         if rank == "N":
-            if self.knight(s_pos, d_pos):
+            if self.knightMove(s_pos, d_pos):
                 return True
         if rank == "B":
-            if self.bishop(s_pos, d_pos):
+            if self.bishopMove(s_pos, d_pos):
                 return True
         if rank == "R":
-            if self.rook(s_pos, d_pos):
+            if self.rookMove(s_pos, d_pos):
+                return True
+        if rank == "Q":
+            if self.queenMove(s_pos, d_pos):
+                return True
+        if rank == "K":
+            if self.kingMove(s_pos, d_pos):
                 return True
         return False
         
 
-    def pawn(self, color, s_pos, d_pos, capture):
+    def pawnMove(self, color, s_pos, d_pos, capture):
         if color == "w":
             if capture != "":
                 if s_pos[1] - d_pos[1] == 1 and abs(s_pos[0]-d_pos[0]) == 1:
@@ -84,7 +91,7 @@ class Piece:
         return False
 
     
-    def rook(self, s_pos, d_pos):
+    def rookMove(self, s_pos, d_pos):
         if s_pos[0] == d_pos[0]:
             if self.GS.betweenVertically(s_pos, d_pos):
                 return False
@@ -96,7 +103,7 @@ class Piece:
         return False
 
 
-    def knight(self, s_pos, d_pos):
+    def knightMove(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) == 2 and abs(s_pos[1]-d_pos[1]) == 1:
             return True
         if abs(s_pos[0]-d_pos[0]) == 1 and abs(s_pos[1]-d_pos[1]) == 2:
@@ -104,12 +111,35 @@ class Piece:
         return False
 
     
-    def bishop(self, s_pos, d_pos):
+    def bishopMove(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) == abs(s_pos[1]-d_pos[1]):
             if self.GS.betweenDiagonally(s_pos, d_pos):
                 return False
             return True
         return False  
+
+
+    def queenMove(self, s_pos, d_pos):
+        if abs(s_pos[0]-d_pos[0]) == abs(s_pos[1]-d_pos[1]):
+            if self.GS.betweenDiagonally(s_pos, d_pos):
+                return False
+            return True
+        if s_pos[0] == d_pos[0]:
+            if self.GS.betweenVertically(s_pos, d_pos):
+                return False
+            return True
+        if s_pos[1] == d_pos[1]:
+            if self.GS.betweenHorizontally(s_pos, d_pos):
+                return False
+            return True
+        return False  
+    
+
+    def kingMove(self, s_pos, d_pos):
+        if abs(s_pos[0]-d_pos[0]) <= 1 and abs(s_pos[1]-d_pos[1]) <= 1:
+            return True
+        return False
+
 
 
                     
