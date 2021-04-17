@@ -37,11 +37,13 @@ class GameState:
 
     def betweenDiagonally(self, s_pos, d_pos):
         dif = abs(s_pos[0]-s_pos[1])
+        step = -1
         if d_pos[0] > s_pos[0]:
-            step = -1
             if d_pos[1] > s_pos[1]:
+                if s_pos[0] > s_pos[1]:
+                    dif = -dif
                 for i in range(s_pos[0]+1, d_pos[0]):
-                    if self.boardstate[i-dif][i] != "":
+                    if self.boardstate[i+dif][i] != "":
                         return True
             else:
                 for i in range(s_pos[0]+1, d_pos[0]):
@@ -49,13 +51,14 @@ class GameState:
                         return True
                     step -= 1
         else:
-            step = -1
             if d_pos[1] > s_pos[1]:
                 for i in range(d_pos[0]+1, s_pos[0]):
                     if self.boardstate[d_pos[1]+step][i] != "":
                         return True
                     step -= 1
             else:
+                if s_pos[0] > s_pos[1]:
+                    dif = -dif
                 for i in range(d_pos[0]+1, s_pos[0]):
                     if self.boardstate[i+dif][i] != "":
                         return True

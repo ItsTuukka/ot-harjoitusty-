@@ -101,36 +101,36 @@ class Attack:
         attacks = []
         i = 1
         for y in range(row+1, 8):
+            if colum+i >= 8:
+                break
             attacks.append((y, colum+i))
             if self.GS.boardstate[y][colum+i] != "":
                 break
             i += 1
-            if colum+i == 8:
-                break
         i = -1
         for y in range(row+1, 8):
+            if colum+i <= -1:
+                break
             attacks.append((y, colum+i))
             if self.GS.boardstate[y][colum+i] != "":
                 break
             i -= 1
-            if colum+i == -1:
-                break
         i = 1
         for y in range(row-1, -1, -1):
+            if colum+i >= 8:
+                break
             attacks.append((y, colum+i))
             if self.GS.boardstate[y][colum+i] != "":
                 break
             i += 1
-            if colum+i == 8:
-                break
         i = -1 
         for y in range(row-1, -1, -1):
+            if colum+i <= -1:
+                break
             attacks.append((y, colum+i))
             if self.GS.boardstate[y][colum+i] != "":
                 break
             i -= 1
-            if colum+i == -1:
-                break
         return attacks
 
 
