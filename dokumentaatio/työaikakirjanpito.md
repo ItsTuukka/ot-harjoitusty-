@@ -9,4 +9,5 @@
 | 13.4.| 2h  | hevosen ja lähettien liikkeet, sekä refaktorointia |
 | 16.4.| 4h  | kuninkaan ja kuningattaren liikkeet, attack luokka sekä sotilaan ylennys |
 | 17.4.| 1h  | bugien korjaamista |
-| Yht. | 20h  |
+| 18.4.| 2h  | linnoittautuminen ja bugien korjaamista |
+| Yht. | 22h  |
