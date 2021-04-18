@@ -14,25 +14,53 @@ class GameState:
         ["wP","wP","wP","wP","wP","wP","wP","wP"],
         ["wR","wN","wB","wQ","wK","wB","wN","wR"]]
         self.moveWhite = True
+        self.wKmove = False
+        self.bKmove = False
+        self.LwRmove = False
+        self.RwRmove = False
+        self.LbRmove = False
+        self.RbRmove = False
 
 
-    def changeBoardState(self, piece, s_pos, d_pos):
+    def changeBoardState(self, piece, s_pos, d_pos, castle):
         if self.moveWhite:
             if piece[0] == "b":
                 return
             if piece[1] == "P" and d_pos[1] == 0:
                 piece = "wQ"
-            self.boardstate[s_pos[1]][s_pos[0]] = ""
-            self.boardstate[d_pos[1]][d_pos[0]] = piece
+            if piece[1] == "K":
+                   self.wKmove = True
+            if piece[1] == "R":
+                if s_pos == (0,7):
+                    self.LwRmove = True
+                else:
+                    self.RwRmove = True
             self.moveWhite = False
         else:
             if piece[0] == "w":
                 return
             if piece[1] == "P" and d_pos[1] == 7:
                 piece = "bQ"
+            if piece[1] == "K":
+                self.bKmove = True
+            if piece[1] == "R":
+                if s_pos == (0,0):
+                    self.LbRmove = True
+                else:
+                    self.RbRmove = True
+            self.moveWhite = True
+        if castle:
+            if d_pos[0] > s_pos[0]:
+                self.boardstate[s_pos[1]][s_pos[0]+1] = piece[0] + "R"
+                self.boardstate[s_pos[1]][s_pos[0]+2] = piece
+            else:
+                self.boardstate[s_pos[1]][s_pos[0]-1] = piece[0] + "R"
+                self.boardstate[s_pos[1]][s_pos[0]-2] = piece
+            self.boardstate[s_pos[1]][s_pos[0]] = ""
+            self.boardstate[d_pos[1]][d_pos[0]] = ""
+        else:
             self.boardstate[s_pos[1]][s_pos[0]] = ""
             self.boardstate[d_pos[1]][d_pos[0]] = piece
-            self.moveWhite = True
 
 
     def betweenDiagonally(self, s_pos, d_pos):

@@ -20,7 +20,6 @@ class Piece:
         self.images = self.loadimages()
 
 
-
     def loadimages(self):
         pieces = {}
         for row in self.gs:
@@ -31,11 +30,18 @@ class Piece:
     
 
     def movePiece(self, s_pos, d_pos):
+        self.A.whiteThreatens()
+        self.A.blackThreatens()
+        castle = False
         piece = self.gs[s_pos[1]][s_pos[0]]
         capture = self.gs[d_pos[1]][d_pos[0]]
         valid = self.isValid(piece, s_pos, d_pos, capture)
+        if capture != "" and capture[0] == piece[0] and piece[1] == "K" and capture[1] == "R":
+                if self.castle(piece[0], s_pos, d_pos):
+                    valid = True
+                    castle = True
         if valid:
-            self.GS.changeBoardState(piece, s_pos, d_pos)
+            self.GS.changeBoardState(piece, s_pos, d_pos, castle)
         else:
             return
 
@@ -140,6 +146,45 @@ class Piece:
             return True
         return False
 
+
+    def castle(self, color, s_pos, d_pos):
+        if self.GS.betweenHorizontally(s_pos, d_pos):
+            return False
+        if color == "w":
+            print(self.A.blackAttacks)
+            if not self.GS.wKmove:
+                if d_pos[0] > s_pos[0]:
+                    for x in range(s_pos[0], d_pos[0]):
+                        if self.A.blackAttacks[s_pos[1]][x]== 1:
+                            return False
+                else:
+                    for x in range(d_pos[0]+1, s_pos[0]+1):
+                        if self.A.blackAttacks[s_pos[1]][x] == 1:
+                            return False
+                if d_pos == (0,7):
+                    if not self.GS.LwRmove:
+                        return True
+                if d_pos == (7,7):
+                    if not self.GS.RwRmove:
+                        return True
+        else:
+            print(self.A.whiteAttacks)
+            if not self.GS.bKmove:
+                if d_pos[0] > s_pos[0]:
+                    for x in range(s_pos[0], d_pos[0]):
+                        if self.A.whitekAttacks[s_pos[1]][x] == 1:
+                            return False
+                else:
+                    for x in range(d_pos[0]+1, s_pos[0]+1):
+                        if self.A.whiteAttacks[s_pos[1]][x] == 1:
+                            return False
+                if d_pos == (0,0):
+                    if not self.GS.LbRmove:
+                        return True
+                if d_pos == (7,0):
+                    if not self.GS.RwRmove:
+                            return True
+        return False
 
 
                     

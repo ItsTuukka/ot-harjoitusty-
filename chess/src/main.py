@@ -37,8 +37,6 @@ def main():
                     Piece.movePiece(player_clicks[0],player_clicks[1])
                     player_clicks = []
         drawBoard()
-        A.whiteThreatens()
-        A.blackThreatens()
         clock.tick(fps)
         p.display.flip()
 

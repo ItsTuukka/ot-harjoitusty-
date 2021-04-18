@@ -11,6 +11,7 @@ class Attack:
 
     
     def whiteThreatens(self):
+        self.whiteAttacks = [[0]*8 for _ in range(8)]
         for row in range(8):
             for colum in range(8):
                 piece = self.GS.boardstate[row][colum]
@@ -44,6 +45,7 @@ class Attack:
     
 
     def blackThreatens(self):
+        self.blackAttacks = [[0]*8 for _ in range(8)]
         for row in range(8):
             for colum in range(8):
                 piece = self.GS.boardstate[row][colum]
