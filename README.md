@@ -47,7 +47,7 @@ poetry run invoke test
 poetry run invoke coverage-report
 ```
 
-### Pylint tarkistus komennolla
+#### Pylint tarkistus komennolla
 
 ```
 poetry run invoke lint
