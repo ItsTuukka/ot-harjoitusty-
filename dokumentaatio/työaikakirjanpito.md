@@ -10,4 +10,5 @@
 | 16.4.| 4h  | kuninkaan ja kuningattaren liikkeet, attack luokka sekä sotilaan ylennys |
 | 17.4.| 1h  | bugien korjaamista |
 | 18.4.| 2h  | linnoittautuminen ja bugien korjaamista |
-| Yht. | 22h  |
+| 19.4.| 1h  | en passant |
+| Yht. | 23h  |
