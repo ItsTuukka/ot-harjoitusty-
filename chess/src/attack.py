@@ -1,5 +1,5 @@
 class Attack:
-
+    
     """
     This class makes and updates a 2D matrix of squares that are being threatened for both colors
     """
@@ -9,7 +9,6 @@ class Attack:
         self.blackAttacks = [[0]*8 for _ in range(8)]
         self.GS = GS
 
-    
     def whiteThreatens(self):
         self.whiteAttacks = [[0]*8 for _ in range(8)]
         for row in range(8):
@@ -42,7 +41,6 @@ class Attack:
                         attacks = self.kingAttacks(row, colum)
                         for attack in attacks:
                             self.whiteAttacks[attack[0]][attack[1]] = 1
-    
 
     def blackThreatens(self):
         self.blackAttacks = [[0]*8 for _ in range(8)]
@@ -77,7 +75,6 @@ class Attack:
                         for attack in attacks:
                             self.blackAttacks[attack[0]][attack[1]] = 1
 
-
     def rookAttacks(self, row, colum):
         attacks = []
         for y in range(row+1, 8):
@@ -92,13 +89,12 @@ class Attack:
             attacks.append((row, x))
             if self.GS.boardstate[row][x] != "":
                 break
-        for x in range (colum-1, -1, -1):
+        for x in range(colum-1, -1, -1):
             attacks.append((row, x))
             if self.GS.boardstate[row][x] != "":
                 break
         return attacks
 
-    
     def bishopAttacks(self, row, colum):
         attacks = []
         i = 1
@@ -125,7 +121,7 @@ class Attack:
             if self.GS.boardstate[y][colum+i] != "":
                 break
             i += 1
-        i = -1 
+        i = -1
         for y in range(row-1, -1, -1):
             if colum+i <= -1:
                 break
@@ -135,18 +131,17 @@ class Attack:
             i -= 1
         return attacks
 
-
     def knightAttacks(self, row, colum):
         attacks = []
         if 0 <= row + 2 <= 7:
-            if 0 <= colum +1 <= 7:
+            if 0 <= colum + 1 <= 7:
                 attacks.append((row+2, colum+1))
-            if 0 <= colum -1 <= 7:
+            if 0 <= colum - 1 <= 7:
                 attacks.append((row+2, colum-1))
         if 0 <= row - 2 <= 7:
-            if 0 <= colum +1 <= 7:
+            if 0 <= colum + 1 <= 7:
                 attacks.append((row-2, colum+1))
-            if 0 <= colum -1 <= 7:
+            if 0 <= colum - 1 <= 7:
                 attacks.append((row-2, colum-1))
         if 0 <= row + 1 <= 7:
             if 0 <= colum + 2 <= 7:
@@ -160,14 +155,12 @@ class Attack:
                 attacks.append((row-1, colum-2))
         return attacks
 
-    
     def queenAttacks(self, row, colum):
         attacks = self.rookAttacks(row, colum)
         diag = self.bishopAttacks(row, colum)
         for i in diag:
             attacks.append(i)
         return attacks
-
 
     def kingAttacks(self, row, colum):
         attacks = []
@@ -188,5 +181,3 @@ class Attack:
         if 0 <= colum - 1 <= 7:
             attacks.append((row, colum-1))
         return attacks
-
-            

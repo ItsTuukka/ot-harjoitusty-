@@ -1,7 +1,8 @@
-import pygame
 import os
+import pygame
 dirname = os.path.dirname(__file__)
 square = 64
+
 
 class Piece:
 
@@ -10,41 +11,40 @@ class Piece:
     Source for the images used: https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent,
     author: Cburnett
     """
-    
-
 
     def __init__(self, GS, Attack):
         self.GS = GS
         self.gs = GS.boardstate
         self.A = Attack
         self.images = self.loadimages()
-
+        self.Castle = False
+        self.enpassant = False
 
     def loadimages(self):
         pieces = {}
         for row in self.gs:
             for colum in row:
                 if colum != "":
-                    pieces[colum] = pygame.transform.scale(pygame.image.load(os.path.join(dirname, "assets/" + colum + ".png")), (square, square))
+                    pieces[colum] = pygame.transform.scale(pygame.image.load(
+                        os.path.join(dirname, "assets/" + colum + ".png")), (square, square))
         return pieces
-    
 
     def movePiece(self, s_pos, d_pos):
+        self.Castle = False
+        self.enpassant = False
         self.A.whiteThreatens()
         self.A.blackThreatens()
-        castle = False
         piece = self.gs[s_pos[1]][s_pos[0]]
         capture = self.gs[d_pos[1]][d_pos[0]]
         valid = self.isValid(piece, s_pos, d_pos, capture)
         if capture != "" and capture[0] == piece[0] and piece[1] == "K" and capture[1] == "R":
-                if self.castle(piece[0], s_pos, d_pos):
-                    valid = True
-                    castle = True
+            if self.castle(piece[0], s_pos, d_pos):
+                valid = True
+                self.Castle = True
         if valid:
-            self.GS.changeBoardState(piece, s_pos, d_pos, castle)
+            self.GS.changeBoardState(piece, s_pos, d_pos, self.Castle, self.enpassant)
         else:
             return
-
 
     def isValid(self, piece, s_pos, d_pos, capture):
         color = piece[0]
@@ -71,7 +71,6 @@ class Piece:
             if self.kingMove(s_pos, d_pos):
                 return True
         return False
-        
 
     def pawnMove(self, color, s_pos, d_pos, capture):
         if color == "w":
@@ -79,6 +78,9 @@ class Piece:
                 if s_pos[1] - d_pos[1] == 1 and abs(s_pos[0]-d_pos[0]) == 1:
                     return True
             else:
+                if s_pos[1] - d_pos[1] == 1 and abs(s_pos[0]-d_pos[0]) == 1:
+                    if self.en_passant(s_pos, d_pos):
+                        return True
                 if s_pos[1] == 6:
                     if s_pos[1] - d_pos[1] == 2 and d_pos[0] == s_pos[0]:
                         return True
@@ -89,6 +91,9 @@ class Piece:
                 if d_pos[1] - s_pos[1] == 1 and abs(s_pos[0]-d_pos[0]) == 1:
                     return True
             else:
+                if d_pos[1] - s_pos[1] == 1 and abs(s_pos[0]-d_pos[0]) == 1:
+                    if self.en_passant(s_pos, d_pos):
+                        return True
                 if s_pos[1] == 1:
                     if d_pos[1] - s_pos[1] == 2 and d_pos[0] == s_pos[0]:
                         return True
@@ -96,7 +101,6 @@ class Piece:
                     return True
         return False
 
-    
     def rookMove(self, s_pos, d_pos):
         if s_pos[0] == d_pos[0]:
             if self.GS.betweenVertically(s_pos, d_pos):
@@ -108,7 +112,6 @@ class Piece:
             return True
         return False
 
-
     def knightMove(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) == 2 and abs(s_pos[1]-d_pos[1]) == 1:
             return True
@@ -116,14 +119,12 @@ class Piece:
             return True
         return False
 
-    
     def bishopMove(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) == abs(s_pos[1]-d_pos[1]):
             if self.GS.betweenDiagonally(s_pos, d_pos):
                 return False
             return True
-        return False  
-
+        return False
 
     def queenMove(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) == abs(s_pos[1]-d_pos[1]):
@@ -138,56 +139,54 @@ class Piece:
             if self.GS.betweenHorizontally(s_pos, d_pos):
                 return False
             return True
-        return False  
-    
+        return False
 
     def kingMove(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) <= 1 and abs(s_pos[1]-d_pos[1]) <= 1:
             return True
         return False
 
-
     def castle(self, color, s_pos, d_pos):
         if self.GS.betweenHorizontally(s_pos, d_pos):
             return False
         if color == "w":
-            print(self.A.blackAttacks)
             if not self.GS.wKmove:
                 if d_pos[0] > s_pos[0]:
                     for x in range(s_pos[0], d_pos[0]):
-                        if self.A.blackAttacks[s_pos[1]][x]== 1:
+                        if self.A.blackAttacks[s_pos[1]][x] == 1:
                             return False
                 else:
                     for x in range(d_pos[0]+1, s_pos[0]+1):
                         if self.A.blackAttacks[s_pos[1]][x] == 1:
                             return False
-                if d_pos == (0,7):
+                if d_pos == (0, 7):
                     if not self.GS.LwRmove:
                         return True
-                if d_pos == (7,7):
+                if d_pos == (7, 7):
                     if not self.GS.RwRmove:
                         return True
         else:
-            print(self.A.whiteAttacks)
             if not self.GS.bKmove:
                 if d_pos[0] > s_pos[0]:
                     for x in range(s_pos[0], d_pos[0]):
-                        if self.A.whitekAttacks[s_pos[1]][x] == 1:
+                        if self.A.whiteAttacks[s_pos[1]][x] == 1:
                             return False
                 else:
                     for x in range(d_pos[0]+1, s_pos[0]+1):
                         if self.A.whiteAttacks[s_pos[1]][x] == 1:
                             return False
-                if d_pos == (0,0):
+                if d_pos == (0, 0):
                     if not self.GS.LbRmove:
                         return True
-                if d_pos == (7,0):
+                if d_pos == (7, 0):
                     if not self.GS.RwRmove:
-                            return True
+                        return True
         return False
 
-
-                    
-
-
-        
+    def en_passant(self, s_pos, d_pos):
+        lastmove = self.GS.move_log[-1]
+        if abs(lastmove[0][1] - lastmove[1][1]) == 2 and "P" in lastmove[2]:
+            if s_pos[1] == lastmove[1][1] and abs(s_pos[0]-lastmove[1][0]) == 1 and abs(d_pos[1]-lastmove[1][1]) == 1 and d_pos[0] == lastmove[1][0]:
+                self.enpassant = True
+                return True
+        return False
