@@ -32,8 +32,6 @@ class Piece:
     def movePiece(self, s_pos, d_pos):
         self.Castle = False
         self.enpassant = False
-        self.A.whiteThreatens()
-        self.A.blackThreatens()
         piece = self.gs[s_pos[1]][s_pos[0]]
         capture = self.gs[d_pos[1]][d_pos[0]]
         valid = self.isValid(piece, s_pos, d_pos, capture)
@@ -42,9 +40,12 @@ class Piece:
                 valid = True
                 self.Castle = True
         if valid:
-            self.GS.changeBoardState(piece, s_pos, d_pos, self.Castle, self.enpassant)
+            self.GS.changeBoardState(
+                piece, s_pos, d_pos, self.Castle, self.enpassant)
         else:
             return
+        self.A.whiteThreatens()
+        self.A.blackThreatens()
 
     def isValid(self, piece, s_pos, d_pos, capture):
         color = piece[0]
