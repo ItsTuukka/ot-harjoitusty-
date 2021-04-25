@@ -15,6 +15,8 @@ class GameState:
                            ["wR", "wN", "wB", "wQ", "wK", "wB", "wN", "wR"]]
         self.move_log = []
         self.moveWhite = True
+        self.white_in_check = False
+        self.black_in_check = False
         self.wKmove = False
         self.bKmove = False
         self.LwRmove = False
@@ -58,7 +60,7 @@ class GameState:
                 self.boardstate[s_pos[1]][s_pos[0]-2] = piece
             self.boardstate[s_pos[1]][s_pos[0]] = ""
             self.boardstate[d_pos[1]][d_pos[0]] = ""
-            self.move_log.append((s_pos, d_pos, piece[0] + "castle"))
+            self.move_log.append((s_pos, d_pos, piece[0], "castle"))
         else:
             self.boardstate[s_pos[1]][s_pos[0]] = ""
             self.boardstate[d_pos[1]][d_pos[0]] = piece
@@ -66,7 +68,6 @@ class GameState:
                 lastmove = self.move_log[-1]
                 self.boardstate[lastmove[1][1]][lastmove[1][0]] = ""
             self.move_log.append((s_pos, d_pos, piece))
-        
 
     def betweenDiagonally(self, s_pos, d_pos):
         dif = abs(s_pos[0]-s_pos[1])
@@ -116,3 +117,15 @@ class GameState:
             if self.boardstate[s_pos[1]][i] != "":
                 return True
         return False
+
+    def find_kings(self):
+        wk = ""
+        bk = ""
+        for row in range(8):
+            for colum in range(8):
+                piece = self.boardstate[row][colum]
+                if piece == "wK":
+                    wk = (colum, row)
+                if piece == "bK":
+                    bk = (colum, row)
+        return (wk, bk)

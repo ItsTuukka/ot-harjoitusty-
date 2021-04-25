@@ -9,11 +9,11 @@ class Attack:
         self.blackAttacks = [[0]*8 for _ in range(8)]
         self.GS = GS
 
-    def whiteThreatens(self):
+    def whiteThreatens(self, state):
         self.whiteAttacks = [[0]*8 for _ in range(8)]
         for row in range(8):
             for colum in range(8):
-                piece = self.GS.boardstate[row][colum]
+                piece = state[row][colum]
                 if piece != "" and piece[0] == "w":
                     if piece[1] == "P":
                         if 0 <= row-1 <= 7:
@@ -42,11 +42,11 @@ class Attack:
                         for attack in attacks:
                             self.whiteAttacks[attack[0]][attack[1]] = 1
 
-    def blackThreatens(self):
+    def blackThreatens(self, state):
         self.blackAttacks = [[0]*8 for _ in range(8)]
         for row in range(8):
             for colum in range(8):
-                piece = self.GS.boardstate[row][colum]
+                piece = state[row][colum]
                 if piece != "" and piece[0] == "b":
                     if piece[1] == "P":
                         if 0 <= row+1 <= 7:
@@ -61,6 +61,7 @@ class Attack:
                     if piece[1] == "B":
                         attacks = self.bishopAttacks(row, colum)
                         for attack in attacks:
+                            print(attack)
                             self.blackAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "N":
                         attacks = self.knightAttacks(row, colum)
@@ -181,3 +182,39 @@ class Attack:
         if 0 <= colum - 1 <= 7:
             attacks.append((row, colum-1))
         return attacks
+
+    def check(self):
+        self.GS.white_in_check = False
+        self.GS.black_in_check = False
+        kings = self.GS.find_kings()
+        wk = kings[0]
+        bk = kings[1]
+        if self.blackAttacks[wk[1]][wk[0]] == 1:
+            self.GS.white_in_check = True
+        if self.whiteAttacks[bk[1]][bk[0]] == 1:
+            self.GS.black_in_check = True
+
+    def check_after(self, piece, s_pos, d_pos, copy):
+        kings = self.GS.find_kings()
+        wk = kings[0]
+        bk = kings[1]
+        if self.GS.moveWhite:
+            copy[s_pos[1]][s_pos[0]] = ""
+            copy[d_pos[1]][d_pos[0]] = piece
+            previous = [i[:] for i in self.blackAttacks]
+            self.blackThreatens(copy)
+            print(self.blackAttacks)
+            print(wk, "wk")
+            if self.blackAttacks[wk[1]][wk[0]] == 1:
+                self.blackAttacks = previous
+                return True
+            self.blackAttacks = previous
+        else:
+            copy[s_pos[1]][s_pos[0]] = ""
+            copy[d_pos[1]][d_pos[0]] = piece
+            previous = [i[:] for i in self.whiteAttacks]
+            if self.whiteAttacks[bk[1]][bk[0]] == 1:
+                self.whiteAttacks = previous
+                return True
+            self.whiteAttacks = previous
+        return False

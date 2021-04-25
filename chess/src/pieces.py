@@ -35,17 +35,21 @@ class Piece:
         piece = self.gs[s_pos[1]][s_pos[0]]
         capture = self.gs[d_pos[1]][d_pos[0]]
         valid = self.isValid(piece, s_pos, d_pos, capture)
+        copy = [i[:] for i in self.gs]
         if capture != "" and capture[0] == piece[0] and piece[1] == "K" and capture[1] == "R":
             if self.castle(piece[0], s_pos, d_pos):
                 valid = True
                 self.Castle = True
         if valid:
-            self.GS.changeBoardState(
-                piece, s_pos, d_pos, self.Castle, self.enpassant)
+            if not self.A.check_after(piece, s_pos, d_pos, copy):
+                self.GS.changeBoardState(
+                    piece, s_pos, d_pos, self.Castle, self.enpassant)
+            else:
+                return
         else:
             return
-        self.A.whiteThreatens()
-        self.A.blackThreatens()
+        self.A.whiteThreatens(self.gs)
+        self.A.blackThreatens(self.gs)
 
     def isValid(self, piece, s_pos, d_pos, capture):
         color = piece[0]
@@ -69,7 +73,7 @@ class Piece:
             if self.queenMove(s_pos, d_pos):
                 return True
         if rank == "K":
-            if self.kingMove(s_pos, d_pos):
+            if self.kingMove(color, s_pos, d_pos):
                 return True
         return False
 
@@ -142,15 +146,22 @@ class Piece:
             return True
         return False
 
-    def kingMove(self, s_pos, d_pos):
+    def kingMove(self, color, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) <= 1 and abs(s_pos[1]-d_pos[1]) <= 1:
-            return True
+            if color == "w":
+                if self.A.blackAttacks[d_pos[1]][d_pos[0]] == 0:
+                    return True
+            else:
+                if self.A.whiteAttacks[d_pos[1]][d_pos[0]] == 0:
+                    return True
         return False
 
     def castle(self, color, s_pos, d_pos):
         if self.GS.betweenHorizontally(s_pos, d_pos):
             return False
         if color == "w":
+            if self.GS.white_in_check:
+                return False
             if not self.GS.wKmove:
                 if d_pos[0] > s_pos[0]:
                     for x in range(s_pos[0], d_pos[0]):
@@ -167,6 +178,8 @@ class Piece:
                     if not self.GS.RwRmove:
                         return True
         else:
+            if self.GS.black_in_check:
+                return False
             if not self.GS.bKmove:
                 if d_pos[0] > s_pos[0]:
                     for x in range(s_pos[0], d_pos[0]):

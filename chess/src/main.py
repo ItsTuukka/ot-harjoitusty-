@@ -37,6 +37,7 @@ def main():
                     Piece.movePiece(player_clicks[0], player_clicks[1])
                     player_clicks = []
         draw_board()
+        A.check()
         clock.tick(FPS)
         p.display.flip()
 
