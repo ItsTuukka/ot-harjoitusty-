@@ -11,4 +11,5 @@
 | 17.4.| 1h  | bugien korjaamista |
 | 18.4.| 2h  | linnoittautuminen ja bugien korjaamista |
 | 19.4.| 3h  | en passant ja testien kirjoittamista |
-| Yht. | 25h  |
+| 25.4.| 4h  | check logiikan alotus |
+| Yht. | 29h  |
