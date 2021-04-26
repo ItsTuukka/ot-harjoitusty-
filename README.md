@@ -14,7 +14,7 @@ Peli toimii Python-versiolla `3.6` tai uudemmalla.
 
 ### Asennus
 
-1. Siirry komentorivillä chess_game kansioon.
+1. Siirry komentorivillä shakki kansioon.
 
 2. Asenna riippuvuudet komennolla
 
