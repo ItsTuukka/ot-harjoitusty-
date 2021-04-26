@@ -17,6 +17,7 @@ class GameState:
         self.moveWhite = True
         self.white_in_check = False
         self.black_in_check = False
+        self.Game_Result = None
         self.wKmove = False
         self.bKmove = False
         self.LwRmove = False

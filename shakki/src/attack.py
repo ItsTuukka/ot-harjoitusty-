@@ -4,10 +4,11 @@ class Attack:
     This class makes and updates a 2D matrix of squares that are being threatened for both colors
     """
 
-    def __init__(self, GS):
+    def __init__(self, GS, Result):
         self.whiteAttacks = [[0]*8 for _ in range(8)]
         self.blackAttacks = [[0]*8 for _ in range(8)]
         self.GS = GS
+        self.Result = Result
 
     def whiteThreatens(self, state):
         self.whiteAttacks = [[0]*8 for _ in range(8)]
@@ -190,8 +191,12 @@ class Attack:
         bk = kings[1]
         if self.blackAttacks[wk[1]][wk[0]] == 1:
             self.GS.white_in_check = True
+            if self.Result.check_checkmate():
+                self.GS.Game_Result = 3
         if self.whiteAttacks[bk[1]][bk[0]] == 1:
             self.GS.black_in_check = True
+            if self.Result.check_checkmate():
+                self.GS.Game_Result = 1
 
     def check_after(self, piece, s_pos, d_pos, copy):
         kings = self.GS.find_kings()

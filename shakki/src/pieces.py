@@ -12,10 +12,11 @@ class Piece:
     author: Cburnett
     """
 
-    def __init__(self, GS, Attack):
+    def __init__(self, GS, Attack, Result):
         self.GS = GS
         self.gs = GS.boardstate
         self.A = Attack
+        self.Result = Result
         self.images = self.loadimages()
         self.Castle = False
         self.enpassant = False
@@ -44,6 +45,7 @@ class Piece:
             if not self.A.check_after(piece, s_pos, d_pos, copy):
                 self.GS.changeBoardState(
                     piece, s_pos, d_pos, self.Castle, self.enpassant)
+                self.Result.move(s_pos, d_pos)
             else:
                 return
         else:

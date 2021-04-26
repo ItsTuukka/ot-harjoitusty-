@@ -3,11 +3,13 @@ import pygame as p
 from gamestate import GameState
 from pieces import Piece
 from attack import Attack
+from chesslib import Result
 clock = p.time.Clock()
 FPS = 30
 GS = GameState()
-A = Attack(GS)
-Piece = Piece(GS, A)
+Result = Result(GS)
+A = Attack(GS, Result)
+Piece = Piece(GS, A, Result)
 WIDTH = HEIGHT = 512
 SQUARE = HEIGHT // 8
 p.init()
@@ -38,6 +40,16 @@ def main():
                     player_clicks = []
         draw_board()
         clock.tick(FPS)
+        if GS.Game_Result:
+            if GS.Game_Result == 1:
+                print("valkoinen voitti")
+                sys.exit()
+            if GS.Game_Result == 2:
+                print("tasapeli")
+                sys.exit()
+            if GS.Game_Result == 3:
+                print("musta voitti")
+                sys.exit()
         p.display.flip()
 
 

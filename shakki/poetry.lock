@@ -46,6 +46,14 @@ pycodestyle = ">=2.7.0"
 toml = "*"
 
 [[package]]
+name = "chess"
+version = "1.5.0"
+description = "A chess library with move generation and validation, Polyglot opening book probing, PGN reading and writing, Gaviota tablebase probing, Syzygy tablebase probing, and XBoard/UCI engine communication."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
@@ -268,8 +276,8 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.6"
-content-hash = "775131e4ae910dd0ba0c53a541a3e09e81ba2309dcf8ad02388eb70226c03e8e"
+python-versions = "^3.7"
+content-hash = "ace4fd9947c7d38bced27f408a07704fefd6e58551155368f262b28fe9e05b29"
 
 [metadata.files]
 astroid = [
@@ -287,6 +295,10 @@ attrs = [
 autopep8 = [
     {file = "autopep8-1.5.6-py2.py3-none-any.whl", hash = "sha256:f01b06a6808bc31698db907761e5890eb2295e287af53f6693b39ce55454034a"},
     {file = "autopep8-1.5.6.tar.gz", hash = "sha256:5454e6e9a3d02aae38f866eec0d9a7de4ab9f93c10a273fb0340f3d6d09f7514"},
+]
+chess = [
+    {file = "chess-1.5.0-py3-none-any.whl", hash = "sha256:d78e83273c6ee58a7b5b557fecdec5082aa44e457b6db5f7f4224eabc7520462"},
+    {file = "chess-1.5.0.tar.gz", hash = "sha256:6969ca671260e24622d522b4dce9f96edbfa3878dd04ac9001cac844d5e64937"},
 ]
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
