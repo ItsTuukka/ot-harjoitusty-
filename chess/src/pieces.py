@@ -50,6 +50,7 @@ class Piece:
             return
         self.A.whiteThreatens(self.gs)
         self.A.blackThreatens(self.gs)
+        self.A.check()
 
     def isValid(self, piece, s_pos, d_pos, capture):
         color = piece[0]

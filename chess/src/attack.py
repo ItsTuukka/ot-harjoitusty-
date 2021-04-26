@@ -22,11 +22,11 @@ class Attack:
                             if 0 <= colum+1 <= 7:
                                 self.whiteAttacks[row-1][colum+1] = 1
                     if piece[1] == "R":
-                        attacks = self.rookAttacks(row, colum)
+                        attacks = self.rookAttacks(row, colum, state)
                         for attack in attacks:
                             self.whiteAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "B":
-                        attacks = self.bishopAttacks(row, colum)
+                        attacks = self.bishopAttacks(row, colum, state)
                         for attack in attacks:
                             self.whiteAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "N":
@@ -34,7 +34,7 @@ class Attack:
                         for attack in attacks:
                             self.whiteAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "Q":
-                        attacks = self.queenAttacks(row, colum)
+                        attacks = self.queenAttacks(row, colum, state)
                         for attack in attacks:
                             self.whiteAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "K":
@@ -55,20 +55,19 @@ class Attack:
                             if 0 <= colum+1 <= 7:
                                 self.blackAttacks[row+1][colum+1] = 1
                     if piece[1] == "R":
-                        attacks = self.rookAttacks(row, colum)
+                        attacks = self.rookAttacks(row, colum, state)
                         for attack in attacks:
                             self.blackAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "B":
-                        attacks = self.bishopAttacks(row, colum)
+                        attacks = self.bishopAttacks(row, colum, state)
                         for attack in attacks:
-                            print(attack)
                             self.blackAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "N":
                         attacks = self.knightAttacks(row, colum)
                         for attack in attacks:
                             self.blackAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "Q":
-                        attacks = self.queenAttacks(row, colum)
+                        attacks = self.queenAttacks(row, colum, state)
                         for attack in attacks:
                             self.blackAttacks[attack[0]][attack[1]] = 1
                     if piece[1] == "K":
@@ -76,34 +75,34 @@ class Attack:
                         for attack in attacks:
                             self.blackAttacks[attack[0]][attack[1]] = 1
 
-    def rookAttacks(self, row, colum):
+    def rookAttacks(self, row, colum, state):
         attacks = []
         for y in range(row+1, 8):
             attacks.append((y, colum))
-            if self.GS.boardstate[y][colum] != "":
+            if state[y][colum] != "":
                 break
         for y in range(row-1, -1, -1):
             attacks.append((y, colum))
-            if self.GS.boardstate[y][colum] != "":
+            if state[y][colum] != "":
                 break
         for x in range(colum+1, 8):
             attacks.append((row, x))
-            if self.GS.boardstate[row][x] != "":
+            if state[row][x] != "":
                 break
         for x in range(colum-1, -1, -1):
             attacks.append((row, x))
-            if self.GS.boardstate[row][x] != "":
+            if state[row][x] != "":
                 break
         return attacks
 
-    def bishopAttacks(self, row, colum):
+    def bishopAttacks(self, row, colum, state):
         attacks = []
         i = 1
         for y in range(row+1, 8):
             if colum+i >= 8:
                 break
             attacks.append((y, colum+i))
-            if self.GS.boardstate[y][colum+i] != "":
+            if state[y][colum+i] != "":
                 break
             i += 1
         i = -1
@@ -111,7 +110,7 @@ class Attack:
             if colum+i <= -1:
                 break
             attacks.append((y, colum+i))
-            if self.GS.boardstate[y][colum+i] != "":
+            if state[y][colum+i] != "":
                 break
             i -= 1
         i = 1
@@ -119,7 +118,7 @@ class Attack:
             if colum+i >= 8:
                 break
             attacks.append((y, colum+i))
-            if self.GS.boardstate[y][colum+i] != "":
+            if state[y][colum+i] != "":
                 break
             i += 1
         i = -1
@@ -127,7 +126,7 @@ class Attack:
             if colum+i <= -1:
                 break
             attacks.append((y, colum+i))
-            if self.GS.boardstate[y][colum+i] != "":
+            if state[y][colum+i] != "":
                 break
             i -= 1
         return attacks
@@ -156,9 +155,9 @@ class Attack:
                 attacks.append((row-1, colum-2))
         return attacks
 
-    def queenAttacks(self, row, colum):
-        attacks = self.rookAttacks(row, colum)
-        diag = self.bishopAttacks(row, colum)
+    def queenAttacks(self, row, colum, state):
+        attacks = self.rookAttacks(row, colum, state)
+        diag = self.bishopAttacks(row, colum, state)
         for i in diag:
             attacks.append(i)
         return attacks
@@ -203,8 +202,6 @@ class Attack:
             copy[d_pos[1]][d_pos[0]] = piece
             previous = [i[:] for i in self.blackAttacks]
             self.blackThreatens(copy)
-            print(self.blackAttacks)
-            print(wk, "wk")
             if self.blackAttacks[wk[1]][wk[0]] == 1:
                 self.blackAttacks = previous
                 return True
@@ -213,6 +210,7 @@ class Attack:
             copy[s_pos[1]][s_pos[0]] = ""
             copy[d_pos[1]][d_pos[0]] = piece
             previous = [i[:] for i in self.whiteAttacks]
+            self.whiteThreatens(copy)
             if self.whiteAttacks[bk[1]][bk[0]] == 1:
                 self.whiteAttacks = previous
                 return True
