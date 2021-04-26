@@ -12,4 +12,5 @@
 | 18.4.| 2h  | linnoittautuminen ja bugien korjaamista |
 | 19.4.| 3h  | en passant ja testien kirjoittamista |
 | 25.4.| 4h  | check logiikan alotus |
+| 26.4.| 6h  | checkmate, stalemate, pelin tulos komentoriville ja bugien korjaamista |
 | Yht. | 29h  |
