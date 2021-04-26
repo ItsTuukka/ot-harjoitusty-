@@ -4,7 +4,7 @@ Simppeli shakki kahdelle pelaajalle, joka on toteutettu Pyhonilla.
 
 Peli on Ohjelmistotekniikan-kurssilla tehtävä projektityö.
 
-Peli toimii Python-versiolla `3.6` tai uudemmalla.
+Peli toimii Python-versiolla `3.7` tai uudemmalla. Johtuen pelille välttämättömän ulkoisen kirjaston takia.
 
 ### Dokumentaatio
 
