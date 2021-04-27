@@ -1,7 +1,7 @@
 ## Luokkakaavio
 Sovelluslogiikan luokkakaavio on seuraavanlainen:
 
-![Luokkakaavio](./kuvat/Luokkakaavio.png)
+![luokkakaavio](./kuvat/Luokkakaavio.png)
 
 ## Sekvenssikaavio
 Siirron jälkeen, sovellus kysyy onko shakkimatti alla näkyvällä tavalla.
