@@ -6,4 +6,4 @@ Sovelluslogiikan luokkakaavio on seuraavanlainen:
 ## Sekvenssikaavio
 Siirron jälkeen, sovellus kysyy onko shakkimatti alla näkyvällä tavalla.
 
-![sekvenssikaavio](.kuvat/sekvenssikaavio.png
+![sekvenssikaavio](.kuvat/sekvenssikaavio.png)
