@@ -1,10 +1,10 @@
 # Shakki
 
-Simppeli shakki kahdelle pelaajalle, joka on toteutettu Pyhonilla.
+Simppeli shakki kahdelle pelaajalle, joka on toteutettu Pythonilla.
 
 Peli on Ohjelmistotekniikan-kurssilla tehtävä projektityö.
 
-Peli toimii Python-versiolla `3.7` tai uudemmalla, johtuen pelille välttämättömän ulkoisen kirjaston takia.
+Peli toimii Python-versiolla `3.7` tai uudemmalla, johtuen pelille välttämättömästä ulkoisesta kirjastosta.
 
 ### Dokumentaatio
 
