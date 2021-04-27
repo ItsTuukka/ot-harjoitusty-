@@ -15,12 +15,10 @@ SQUARE = HEIGHT // 8
 p.init()
 screen = p.display.set_mode((WIDTH, HEIGHT))
 
-"""
-This is the main function that starts the game and goes through user inputs
-"""
-
 
 def main():
+    """This is the main function that starts the game and goes through user inputs
+    """
     screen.fill((0, 0, 0))
     player_clicks = []
     while True:
@@ -54,6 +52,8 @@ def main():
 
 
 def draw_board():
+    """Draws the board, squares and pieces.
+    """
     colors = [(235, 235, 208), (119, 148, 85)]
     for row in range(8):
         for colum in range(8):

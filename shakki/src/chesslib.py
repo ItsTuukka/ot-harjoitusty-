@@ -4,7 +4,9 @@ import chess
 class Result:
 
     """
-    This class uses the chess library for python and is only used to check for checkmate or stalemate
+    This class uses the chess library for python and is only used to check for the result of the game.
+    These results include: checkmate, stalemate, draw by insufficient material 
+    and draw by fivefold repetition of moves.
     """
 
     def __init__(self, GS):
@@ -15,6 +17,8 @@ class Result:
         self.colums = notations[1]
 
     def notation_maker(self):
+        """Makes notation dictionaries for rows and colums.
+        """
         rows = {}
         colums = {}
         value = 8
@@ -29,6 +33,9 @@ class Result:
         return [rows, colums]
 
     def move(self, s_pos, d_pos):
+        """Moves pieces on the chess library board.
+        Needed for keeping it updated, so it can detect the result of the game.
+        """
         sx = s_pos[0]
         sy = s_pos[1]
         dx = d_pos[0]
@@ -41,8 +48,27 @@ class Result:
         print(self.board)
 
     def check_checkmate(self):
+        """Checks for checkmate, funtion by chess library.
+        """
         return self.board.is_checkmate()
 
     def check_stalemate(self):
+        """Checks for checmate, function by chess library.
+        If True, game result is draw.
+        """
         if self.board.is_stalemate():
+            self.GS.Game_Result = 2
+
+    def insufficient_material(self):
+        """Checks for insufficient material, function by chess library.
+        If True, game result is draw.
+        """
+        if self.board.is_insufficient_material():
+            self.GS.Game_Result = 2
+
+    def fivefold_repetition(self):
+        """Checks for fivefold repetition, function by chess library.
+        If True, game result is draw.
+        """
+        if self.board.is_fivefold_repetition():
             self.GS.Game_Result = 2

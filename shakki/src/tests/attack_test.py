@@ -2,9 +2,11 @@ import unittest
 from attack import Attack
 from gamestate import GameState
 from pieces import Piece
+from chesslib import Result
 GS = GameState()
-A = Attack(GS)
-Piece = Piece(GS, A)
+Result = Result(GS)
+A = Attack(GS, Result)
+Piece = Piece(GS, A, Result)
 
 
 class TestAttack(unittest.TestCase):

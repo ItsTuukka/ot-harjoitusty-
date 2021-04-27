@@ -1,7 +1,8 @@
 class Attack:
     
     """
-    This class makes and updates a 2D matrix of squares that are being threatened for both colors
+    This class makes and updates a 2D matrix of squares that are being threatened for both colors.
+    Also checks for checks.
     """
 
     def __init__(self, GS, Result):
@@ -11,6 +12,8 @@ class Attack:
         self.Result = Result
 
     def whiteThreatens(self, state):
+        """Makes and updates the 2D matrix for white.
+        """
         self.whiteAttacks = [[0]*8 for _ in range(8)]
         for row in range(8):
             for colum in range(8):
@@ -44,6 +47,9 @@ class Attack:
                             self.whiteAttacks[attack[0]][attack[1]] = 1
 
     def blackThreatens(self, state):
+        """Makes and updates the 2D matrix for black.
+        Different functions for every rank of pieces except pawns.
+        """
         self.blackAttacks = [[0]*8 for _ in range(8)]
         for row in range(8):
             for colum in range(8):
@@ -77,6 +83,8 @@ class Attack:
                             self.blackAttacks[attack[0]][attack[1]] = 1
 
     def rookAttacks(self, row, colum, state):
+        """Checks all the squares that rooks attack.
+        """
         attacks = []
         for y in range(row+1, 8):
             attacks.append((y, colum))
@@ -97,6 +105,8 @@ class Attack:
         return attacks
 
     def bishopAttacks(self, row, colum, state):
+        """Checks all the squares that bishops attack.
+        """
         attacks = []
         i = 1
         for y in range(row+1, 8):
@@ -133,6 +143,8 @@ class Attack:
         return attacks
 
     def knightAttacks(self, row, colum):
+        """Checks all the squares that knights attack.
+        """
         attacks = []
         if 0 <= row + 2 <= 7:
             if 0 <= colum + 1 <= 7:
@@ -157,6 +169,9 @@ class Attack:
         return attacks
 
     def queenAttacks(self, row, colum, state):
+        """Checks all the squares that queens attack.
+        Uses the functions for rooks and bishops.
+        """
         attacks = self.rookAttacks(row, colum, state)
         diag = self.bishopAttacks(row, colum, state)
         for i in diag:
@@ -164,6 +179,8 @@ class Attack:
         return attacks
 
     def kingAttacks(self, row, colum):
+        """Checks all the squares that kings attack.
+        """
         attacks = []
         if 0 <= row+1 <= 7:
             attacks.append((row+1, colum))
@@ -184,6 +201,10 @@ class Attack:
         return attacks
 
     def check(self):
+        """Checks for check for both colors.
+        If there is a check, then asks if checkmate.
+        If checkmate, adjusts the game result accordingly.
+        """
         self.GS.white_in_check = False
         self.GS.black_in_check = False
         kings = self.GS.find_kings()
@@ -199,6 +220,11 @@ class Attack:
                 self.GS.Game_Result = 1
 
     def check_after(self, piece, s_pos, d_pos, copy):
+        """If a move is valid otherwise, this function checks
+        that the move does not bring your own king into a check.
+        Uses a copy of the boardstate, makes the move on the copy and makes a new 2D attack matrix from that.
+        So if the move would bring your own king into a check it does not affect the real boardstate or 2D attack matrix.
+        """
         kings = self.GS.find_kings()
         if piece[1] == "K" and piece[0] == "w":
             wk = d_pos

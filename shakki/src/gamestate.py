@@ -26,6 +26,9 @@ class GameState:
         self.RbRmove = False
 
     def changeBoardState(self, piece, s_pos, d_pos, castle, enpassant):
+        """Gets information from the move piece function and makes chenges
+        to the boardstate accordingly. Also changes turns.
+        """
         if self.moveWhite:
             if piece[0] == "b":
                 return
@@ -71,6 +74,9 @@ class GameState:
             self.move_log.append((s_pos, d_pos, piece))
 
     def betweenDiagonally(self, s_pos, d_pos):
+        """If a piece tries to move diagonally, this function checks
+        is there anything between. Used to validate moves.
+        """
         dif = abs(s_pos[0]-s_pos[1])
         step = -1
         if d_pos[0] > s_pos[0]:
@@ -100,6 +106,9 @@ class GameState:
         return False
 
     def betweenVertically(self, s_pos, d_pos):
+        """If a piece tries to move vertically, this function checks
+        is there anything between. Used to validate moves.
+        """
         if d_pos[1] > s_pos[1]:
             step = 1
         else:
@@ -110,6 +119,9 @@ class GameState:
         return False
 
     def betweenHorizontally(self, s_pos, d_pos):
+        """If a piece tries to move horizontally, this function checks
+        is there anything between. Used to validate moves.
+        """
         if d_pos[0] > s_pos[0]:
             step = 1
         else:
@@ -120,6 +132,8 @@ class GameState:
         return False
 
     def find_kings(self):
+        """Finds both kings from the board.
+        """
         wk = ""
         bk = ""
         for row in range(8):
