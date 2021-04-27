@@ -48,6 +48,8 @@ poetry run invoke test
 poetry run invoke coverage-report
 ```
 
+Raportti generoituu shakki/htmlcov/index.html tiedostoon.
+
 #### Pylint tarkistus komennolla
 
 ```
