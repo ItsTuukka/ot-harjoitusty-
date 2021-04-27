@@ -53,6 +53,7 @@ class Piece:
         self.A.whiteThreatens(self.gs)
         self.A.blackThreatens(self.gs)
         self.A.check()
+        self.Result.check_stalemate()
 
     def isValid(self, piece, s_pos, d_pos, capture):
         color = piece[0]
@@ -76,7 +77,7 @@ class Piece:
             if self.queenMove(s_pos, d_pos):
                 return True
         if rank == "K":
-            if self.kingMove(color, s_pos, d_pos):
+            if self.kingMove(s_pos, d_pos):
                 return True
         return False
 
@@ -149,14 +150,9 @@ class Piece:
             return True
         return False
 
-    def kingMove(self, color, s_pos, d_pos):
+    def kingMove(self, s_pos, d_pos):
         if abs(s_pos[0]-d_pos[0]) <= 1 and abs(s_pos[1]-d_pos[1]) <= 1:
-            if color == "w":
-                if self.A.blackAttacks[d_pos[1]][d_pos[0]] == 0:
-                    return True
-            else:
-                if self.A.whiteAttacks[d_pos[1]][d_pos[0]] == 0:
-                    return True
+            return True
         return False
 
     def castle(self, color, s_pos, d_pos):

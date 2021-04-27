@@ -1,4 +1,6 @@
 import chess
+
+
 class Result:
 
     """
@@ -25,7 +27,7 @@ class Result:
             colums[i] = atoh[index]
             index += 1
         return [rows, colums]
-    
+
     def move(self, s_pos, d_pos):
         sx = s_pos[0]
         sy = s_pos[1]
@@ -36,6 +38,7 @@ class Result:
         move = sq + dq
         Move = chess.Move.from_uci(move)
         self.board.push(Move)
+        print(self.board)
 
     def check_checkmate(self):
         return self.board.is_checkmate()
@@ -43,4 +46,3 @@ class Result:
     def check_stalemate(self):
         if self.board.is_stalemate():
             self.GS.Game_Result = 2
-            return True

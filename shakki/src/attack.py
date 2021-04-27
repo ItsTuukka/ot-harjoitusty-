@@ -200,8 +200,15 @@ class Attack:
 
     def check_after(self, piece, s_pos, d_pos, copy):
         kings = self.GS.find_kings()
-        wk = kings[0]
-        bk = kings[1]
+        if piece[1] == "K" and piece[0] == "w":
+            wk = d_pos
+            bk = kings[1]
+        elif piece[1] == "K" and piece[0] == "b":
+            wk = kings[0]
+            bk = d_pos
+        else:
+            wk = kings[0]
+            bk = kings[1]
         if self.GS.moveWhite:
             copy[s_pos[1]][s_pos[0]] = ""
             copy[d_pos[1]][d_pos[0]] = piece
