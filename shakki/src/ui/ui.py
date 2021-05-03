@@ -1,10 +1,10 @@
-from tkinter import Tk, ttk
 from menu import Menu
 from username_select import UsernameSelect
 
 class UI:
-    def __init__(self, root):
+    def __init__(self, root, run_game):
         self._root = root
+        self.run_game = run_game
         self._current_view = None
 
     def start(self):
@@ -41,10 +41,7 @@ class UI:
         )
         self._current_view.pack()
     
-window = Tk()
-window.title("Chess")
-
-ui = UI(window)
-ui.start()
-
-window.mainloop()
+    def show_game_start(self):
+        self.hide_current_view
+        self.run_game()
+    

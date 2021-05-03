@@ -1,9 +1,9 @@
 import sys
 import pygame as p
-from gamestate import GameState
-from pieces import Piece
-from attack import Attack
-from chesslib import Result
+from gamelogic.gamestate import GameState
+from gamelogic.pieces import Piece
+from gamelogic.attack import Attack
+from gamelogic.chesslib import Result
 clock = p.time.Clock()
 FPS = 30
 GS = GameState()
@@ -16,7 +16,7 @@ p.init()
 screen = p.display.set_mode((WIDTH, HEIGHT))
 
 
-def main():
+def run():
     """This is the main function that starts the game and goes through user inputs
     """
     screen.fill((0, 0, 0))
@@ -66,4 +66,3 @@ def draw_board():
                     colum*SQUARE, row*SQUARE, SQUARE, SQUARE))
 
 
-main()

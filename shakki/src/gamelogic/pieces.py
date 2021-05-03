@@ -29,7 +29,7 @@ class Piece:
             for colum in row:
                 if colum != "":
                     pieces[colum] = pygame.transform.scale(pygame.image.load(
-                        os.path.join(dirname, "assets/" + colum + ".png")), (square, square))
+                        os.path.join(dirname, "../assets/" + colum + ".png")), (square, square))
         return pieces
 
     def movePiece(self, s_pos, d_pos):
@@ -68,13 +68,19 @@ class Piece:
         """
         color = piece[0]
         rank = piece[1]
+        if self.GS.moveWhite:
+            if color == "b":
+                return False
+        else:
+            if color == "w":
+                return False
         if capture != "":
             if capture[0] == color and piece[1] == "K" and capture[1] == "R":
                 if self.castle(piece[0], s_pos, d_pos):
                     self.Castle = True
                     return True
             if capture[0] == color or capture[1] == "K":
-                return
+                return False
         if rank == "P":
             if self.pawnMove(color, s_pos, d_pos, capture):
                 return True
@@ -93,7 +99,6 @@ class Piece:
         if rank == "K":
             if self.kingMove(s_pos, d_pos):
                 return True
-        return False
 
     def pawnMove(self, color, s_pos, d_pos, capture):
         """Move validation function for pawns, returns True if valid.

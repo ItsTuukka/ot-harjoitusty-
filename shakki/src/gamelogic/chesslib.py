@@ -45,7 +45,6 @@ class Result:
         move = sq + dq
         Move = chess.Move.from_uci(move)
         self.board.push(Move)
-        print(self.board)
 
     def check_checkmate(self):
         """Checks for checkmate, funtion by chess library.
