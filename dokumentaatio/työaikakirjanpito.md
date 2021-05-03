@@ -14,4 +14,5 @@
 | 25.4.| 4h  | check logiikan alotus |
 | 26.4.| 6h  | checkmate, stalemate, pelin tulos komentoriville ja bugien korjaamista |
 | 27.4.| 2h  | pelin lopetusta, refaktorointia, bugien korjaamista ja docstring |
-| Yht. | 37h  |
+| 03.5.| 5h  | ui, refaktorointia ja bugien korjaamista |
+| Yht. | 42h  |
