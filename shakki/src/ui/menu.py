@@ -18,7 +18,7 @@ class Menu:
 
     def initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        label = ttk.Label(master=self._frame, text="Menu", font="none 22 bold")
+        label = ttk.Label(master=self._frame, text="Menu", font="italic 22 bold")
         username_select = ttk.Button(
             master=self._frame,
             text="Start Game",
@@ -26,10 +26,10 @@ class Menu:
         )
         game_history = ttk.Button(
             master=self._frame,
-            text="Game History",
+            text="Game History (coming soon)",
             command=self.handle_game_history
         )
-        exit = ttk.Button(
+        exit_game = ttk.Button(
             master=self._frame,
             text="Exit",
             command=sys.exit
@@ -38,6 +38,6 @@ class Menu:
         label.grid(pady=10)
         username_select.grid(pady=10)
         game_history.grid(pady=10)
-        exit.grid(pady=10)
+        exit_game.grid(pady=10)
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=550)

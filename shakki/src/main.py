@@ -1,9 +1,11 @@
 import sys
 import pygame as p
+from tkinter import Tk
 from gamelogic.gamestate import GameState
 from gamelogic.pieces import Piece
 from gamelogic.attack import Attack
 from gamelogic.chesslib import Result
+from ui.ui import UI
 clock = p.time.Clock()
 FPS = 30
 GS = GameState()
@@ -12,14 +14,14 @@ A = Attack(GS, Result)
 Piece = Piece(GS, A, Result)
 WIDTH = HEIGHT = 512
 SQUARE = HEIGHT // 8
-p.init()
-screen = p.display.set_mode((WIDTH, HEIGHT))
 
 
-def run():
+
+def main():
     """This is the main function that starts the game and goes through user inputs
     """
-    screen.fill((0, 0, 0))
+    p.init()
+    screen = p.display.set_mode((WIDTH, HEIGHT))
     player_clicks = []
     while True:
         for e in p.event.get():
@@ -36,22 +38,22 @@ def run():
                 if len(player_clicks) == 2:
                     Piece.movePiece(player_clicks[0], player_clicks[1])
                     player_clicks = []
-        draw_board()
+        draw_board(screen)
         clock.tick(FPS)
         if GS.Game_Result:
-            if GS.Game_Result == 1:
-                print("valkoinen voitti")
-                sys.exit()
-            if GS.Game_Result == 2:
-                print("tasapeli")
-                sys.exit()
-            if GS.Game_Result == 3:
-                print("musta voitti")
-                sys.exit()
+            end_game()
         p.display.flip()
 
+def end_game():
+    p.quit()
+    window = Tk()
+    window.title("Chess")
+    ui = UI(window, main)
+    ui.end(GS.Game_Result)
+    window.mainloop()
 
-def draw_board():
+
+def draw_board(screen):
     """Draws the board, squares and pieces.
     """
     colors = [(235, 235, 208), (119, 148, 85)]
