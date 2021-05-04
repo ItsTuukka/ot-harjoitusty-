@@ -36,7 +36,8 @@ Peliympäristö näyttää seuraavalta:
 
 ![pelinäkymä](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/kuvat/pelin%C3%A4kym%C3%A4.png)
 
-Peliä pelataan shakille tuttuun tapaan vuorotellen siirtoja tehden alkaen valkoisen vuorosta.
+Peliä pelataan shakille tuttuun tapaan vuorotellen siirtoja tehden alkaen valkoisen vuorosta. Vain lailliset siirrot ovat sallittuja, eikä peli rekisteröi muita siirtoja.
+Painamalla nappulaa valitset kyseisin nappulan ja nappulalle laillista ruutua painamalla teet siirron. Painamalla nappulaa uusiksi poistat sen hetkisen valintasi.
 
 Kun peli päättyy, joko shakkimattiin tai erinäisiin tasapeli skenaarioihin, niin peli ikkuna sulkeutuu ja lopetusruutu tulee näkyviin kertoen pelin tuloksen.
 
