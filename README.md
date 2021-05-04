@@ -6,9 +6,9 @@ Peli on Ohjelmistotekniikan-kurssilla tehtävä projektityö.
 
 Peli toimii Python-versiolla `3.7` tai uudemmalla, johtuen pelille välttämättömästä ulkoisesta kirjastosta.
 
-### Release 1
+### Lataa sovellus täältä
 
-- [Viikon 5 release](https://github.com/ItsTuukka/ot-harjoitusty-/releases/tag/viikko5)
+[Viikon 6 release](https://github.com/ItsTuukka/ot-harjoitusty-/releases/tag/viikko6)
 
 Pelkästään peli toimii, käyttöliittymää muulle kuin pelinäkymälle ei ole.
 Shakkimatti, patti, liian vähän nappuloita ja viisinkertainen toisto päättää pelin ja sulkee sovelluksen.
