@@ -8,8 +8,8 @@ Kahden pelaajan shakki. Oikeat shakin säännöt, vain lailliset siirrot mahdoll
 
 Pelaajat voivat
 - [x] pelata shakkia
-- valita nimimerkit
-- valita värin
+- [x] valita nimimerkit
+- [x] valita värin
 - tarkastella aiempien pelien tuloksia (kuka voitti ja millä värillä)
 
 ## Jatkokehitysideoita
