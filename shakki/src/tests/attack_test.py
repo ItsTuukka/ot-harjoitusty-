@@ -1,8 +1,8 @@
 import unittest
-from attack import Attack
-from gamestate import GameState
-from pieces import Piece
-from chesslib import Result
+from gamelogic.attack import Attack
+from gamelogic.gamestate import GameState
+from gamelogic.pieces import Piece
+from gamelogic.chesslib import Result
 GS = GameState()
 Result = Result(GS)
 A = Attack(GS, Result)

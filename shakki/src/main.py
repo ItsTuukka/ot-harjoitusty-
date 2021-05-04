@@ -17,7 +17,7 @@ SQUARE = HEIGHT // 8
 
 
 
-def main():
+def main(player1, player2):
     """This is the main function that starts the game and goes through user inputs
     """
     p.init()
@@ -41,14 +41,14 @@ def main():
         draw_board(screen)
         clock.tick(FPS)
         if GS.Game_Result:
-            end_game()
+            end_game(player1, player2)
         p.display.flip()
 
-def end_game():
+def end_game(player1, player2):
     p.quit()
     window = Tk()
     window.title("Chess")
-    ui = UI(window, main)
+    ui = UI(window, main, player1, player2)
     ui.end(GS.Game_Result)
     window.mainloop()
 

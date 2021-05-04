@@ -18,7 +18,7 @@ class Menu:
 
     def initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        label = ttk.Label(master=self._frame, text="Menu", font="italic 22 bold")
+        label = ttk.Label(master=self._frame, text="Main Menu", font="italic 22 bold")
         username_select = ttk.Button(
             master=self._frame,
             text="Start Game",

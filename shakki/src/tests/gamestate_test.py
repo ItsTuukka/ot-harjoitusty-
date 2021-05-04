@@ -1,5 +1,5 @@
 import unittest
-from gamestate import GameState
+from gamelogic.gamestate import GameState
 
 
 class TestGameState(unittest.TestCase):

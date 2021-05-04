@@ -1,25 +1,26 @@
 from ui.menu import Menu
 from ui.username_select import UsernameSelect
-from ui.white_wins import WhiteWins
-from ui.black_wins import BlackWins
+from ui.someone_wins import SomeoneWins
 from ui.draw import Draw
 
 class UI:
-    def __init__(self, root, run_game):
+    def __init__(self, root, run_game, player1=None, player2=None):
         self._root = root
         self.run_game = run_game
         self._current_view = None
+        self._player1 = player1
+        self._player2 = player2
 
     def start(self):
         self.show_menu()
     
     def end(self, result):
         if result == 1:
-            self.show_white_wins()
-        if result == 2:
+            self.show_someone_wins(self._player1)
+        elif result == 2:
             self.show_draw()
         else:
-            self.show_black_wins()
+            self.show_someone_wins(self._player2)
     
     def hide_current_view(self):
         if self._current_view:
@@ -35,8 +36,8 @@ class UI:
     def handle_game_history(self):
         self.show_game_history()
     
-    def handle_game_start(self):
-        self.show_game_start()
+    def handle_game_start(self, player1, player2):
+        self.show_game_start(player1, player2)
 
     def show_menu(self):
         self.hide_current_view()
@@ -55,24 +56,17 @@ class UI:
         )
         self._current_view.pack()
     
-    def show_game_start(self):
+    def show_game_start(self, player1, player2):
         self.hide_current_view()
         self._root.destroy()
-        self.run_game()
+        self.run_game(player1, player2)
     
-    def show_white_wins(self):
+    def show_someone_wins(self, winner):
         self.hide_current_view()
-        self._current_view = WhiteWins(
+        self._current_view = SomeoneWins(
             self._root,
-            self.hand_start
-        )
-        self._current_view.pack()
-    
-    def show_black_wins(self):
-        self.hide_current_view()
-        self._current_view = BlackWins(
-            self._root,
-            self.hand_start
+            self.hand_start,
+            winner
         )
         self._current_view.pack()
     
