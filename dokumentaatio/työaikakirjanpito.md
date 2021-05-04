@@ -15,4 +15,5 @@
 | 26.4.| 6h  | checkmate, stalemate, pelin tulos komentoriville ja bugien korjaamista |
 | 27.4.| 2h  | pelin lopetusta, refaktorointia, bugien korjaamista ja docstring |
 | 3.5. | 5h  | ui, refaktorointia ja bugien korjaamista |
-| Yht. | 42h  |
+| 4.5. | 4h  | ui, refaktorointia ja testejä |
+| Yht. | 46h  |
