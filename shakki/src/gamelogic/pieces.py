@@ -61,6 +61,7 @@ class Piece:
         self.A.check()
         self.Result.check_stalemate()
         self.Result.insufficient_material()
+        self.Result.fivefold_repetition()
 
     def isValid(self, piece, s_pos, d_pos, capture):
         """Checks the rank of the piece, gives the information to that ranks
