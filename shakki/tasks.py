@@ -20,3 +20,7 @@ def coverage_report(ctx):
 @task
 def lint(ctx):
 	ctx.run('pylint src')
+
+@task
+def initialize_db(ctx):
+    ctx.run('python3 src/initialize_db.py')

@@ -6,3 +6,5 @@ __pycache__
 .coverage
 htmlcov
 / chess / src / __pycache__ 
+/shakki/data/db.sqlite
+/shakki/data/test_db.sqlite
