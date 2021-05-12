@@ -27,7 +27,13 @@ Peli toimii Python-versiolla `3.7` tai uudemmalla.
 poetry install
 ```
 
-3. Käynnistä sovellus komennolla
+3. Ensimmäisellä suorituskerralla alusta tietokanta tulosten tallennusta varten
+
+```
+poetry run invoke initialize-db
+```
+
+4. Käynnistä sovellus komennolla
 
 ```
 poetry run invoke start
