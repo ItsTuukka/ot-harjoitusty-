@@ -1,7 +1,6 @@
 from ui.menu import Menu
 from ui.username_select import UsernameSelect
-from ui.someone_wins import SomeoneWins
-from ui.draw import Draw
+from ui.end_screen import EndScreen
 
 class UI:
     def __init__(self, root, run_game, player1=None, player2=None):
@@ -16,11 +15,11 @@ class UI:
     
     def end(self, result):
         if result == 1:
-            self.show_someone_wins(self._player1)
+            self.show_end(self._player1 + " wins!")
         elif result == 2:
-            self.show_draw()
+            self.show_end("Draw!")
         else:
-            self.show_someone_wins(self._player2)
+            self.show_end(self._player2 + " wins!")
     
     def hide_current_view(self):
         if self._current_view:
@@ -61,19 +60,12 @@ class UI:
         self._root.destroy()
         self.run_game(player1, player2)
     
-    def show_someone_wins(self, winner):
+    def show_end(self, result):
         self.hide_current_view()
-        self._current_view = SomeoneWins(
+        self._current_view = EndScreen(
             self._root,
             self.hand_start,
-            winner
+            result
         )
         self._current_view.pack()
     
-    def show_draw(self):
-        self.hide_current_view()
-        self._current_view = Draw(
-            self._root,
-            self.hand_start
-        )
-        self._current_view.pack()
