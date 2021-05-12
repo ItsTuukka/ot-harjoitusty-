@@ -6,10 +6,14 @@ Siirry komentorivillä projektista löytyvään shakki -kansioon ja suorita kaik
 
 ## Ohjelman käynnistäminen
 
-Ennen pelin ensimmäistä käynnistystä suorita seuraava komento
+Ennen pelin ensimmäistä käynnistystä suorita seuraavat komennot
 
 ```
 poetry install
+```
+
+```
+poetry run invoke initialize-db
 ```
 
 Tämän jälkeen pelin voi käynnistää komennolla 
