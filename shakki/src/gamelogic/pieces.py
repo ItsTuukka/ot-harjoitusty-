@@ -67,7 +67,6 @@ class Piece:
         """Checks the rank of the piece, gives the information to that ranks
         move validation function and returns if the move is valid.
         """
-        self.GS.Game_Result = 3
         color = piece[0]
         rank = piece[1]
         if self.GS.moveWhite:
