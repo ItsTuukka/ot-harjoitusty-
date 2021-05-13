@@ -16,6 +16,6 @@
 | 27.4.| 2h  | pelin lopetusta, refaktorointia, bugien korjaamista ja docstring |
 | 3.5. | 5h  | ui, refaktorointia ja bugien korjaamista |
 | 4.5. | 4h  | ui, refaktorointia ja testejä |
-| 13.5.| 2h  | tietokannan alustus |
-| 14.5.| 4h  | match history |
+| 12.5.| 2h  | tietokannan alustus |
+| 13.5.| 4h  | match history |
 | Yht. | 52h  |
