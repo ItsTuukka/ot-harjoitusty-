@@ -1,6 +1,7 @@
 from ui.menu import Menu
 from ui.username_select import UsernameSelect
 from ui.end_screen import EndScreen
+from ui.match_history import MatchHistory
 
 class UI:
     def __init__(self, root, run_game, player1=None, player2=None):
@@ -26,7 +27,7 @@ class UI:
             self._current_view.destroy()
         self._current_view = None
     
-    def hand_start(self):
+    def handle_start(self):
         self.start()
 
     def handle_username_select(self):
@@ -60,11 +61,19 @@ class UI:
         self._root.destroy()
         self.run_game(player1, player2)
     
+    def show_game_history(self):
+        history = MatchHistory(
+            self.handle_start
+        )
+        history.pack()
+        history.start_up()
+        
+    
     def show_end(self, result):
         self.hide_current_view()
         self._current_view = EndScreen(
             self._root,
-            self.hand_start,
+            self.handle_start,
             result
         )
         self._current_view.pack()

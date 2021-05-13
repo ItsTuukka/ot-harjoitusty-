@@ -26,7 +26,7 @@ class Menu:
         )
         game_history = ttk.Button(
             master=self._frame,
-            text="Game History (coming soon)",
+            text="Match History",
             command=self.handle_game_history
         )
         exit_game = ttk.Button(

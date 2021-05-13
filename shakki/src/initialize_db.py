@@ -2,22 +2,22 @@ from db_connection import get_db_connection
 
 def create_tables(connection):
     cursor = connection.cursor()
-    cursor.execute(
+    cursor.execute('''
         CREATE TABLE match_history (
             player1 TEXT,
             player2 TEXT,
             result INTEGER
         );
-    )
+    ''')
 
     connection.commit()
 
 
 def drop_tables(connection):
     cursor = connection.cursor()
-    cursor.execute(
+    cursor.execute('''
         DROP TABLE IF EXISTS match_history;
-    )
+    ''')
     connection.commit()
 
 

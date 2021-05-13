@@ -6,12 +6,14 @@ from gamelogic.pieces import Piece
 from gamelogic.attack import Attack
 from gamelogic.chesslib import Result
 from ui.ui import UI
+from repositories.match_history_repository import MatchHistoryRepository
 clock = p.time.Clock()
 FPS = 30
 GS = GameState()
 Result = Result(GS)
 A = Attack(GS, Result)
 Piece = Piece(GS, A, Result)
+match_history = MatchHistoryRepository()
 WIDTH = HEIGHT = 512
 SQUARE = HEIGHT // 8
 
@@ -45,13 +47,13 @@ def main(player1, player2):
         p.display.flip()
 
 def end_game(player1, player2):
+    match_history.add_score(player1, player2, GS.Game_Result)
     p.quit()
     window = Tk()
     window.title("Chess")
     ui = UI(window, main, player1, player2)
     ui.end(GS.Game_Result)
     window.mainloop()
-
 
 def draw_board(screen):
     """Draws the board, squares and pieces.
