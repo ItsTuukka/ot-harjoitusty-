@@ -18,10 +18,14 @@ WIDTH = HEIGHT = 512
 SQUARE = HEIGHT // 8
 
 
-
 def main(player1, player2):
-    """This is the main function that starts the game and goes through user inputs
+    """This is the main function that starts the game and goes through user inputs.
+
+    Args:
+        player1: Username for player1.
+        player2: Username for player2.
     """
+
     p.init()
     screen = p.display.set_mode((WIDTH, HEIGHT))
     player_clicks = []
@@ -42,22 +46,35 @@ def main(player1, player2):
                     player_clicks = []
         draw_board(screen)
         clock.tick(FPS)
-        if GS.Game_Result:
+        if GS.game_result:
             end_game(player1, player2)
         p.display.flip()
 
+
 def end_game(player1, player2):
-    match_history.add_score(player1, player2, GS.Game_Result)
+    """Sends game information to be saved and calls end game screen.
+
+    Args:
+        player1: Username for player1.
+        player2: Username for player2.
+    """
+
+    match_history.add_score(player1, player2, GS.game_result)
     p.quit()
     window = Tk()
     window.title("Chess")
     ui = UI(window, main, player1, player2)
-    ui.end(GS.Game_Result)
+    ui.end(GS.game_result)
     window.mainloop()
+
 
 def draw_board(screen):
     """Draws the board, squares and pieces.
+
+    Args:
+        screen: Pygame display.
     """
+
     colors = [(235, 235, 208), (119, 148, 85)]
     for row in range(8):
         for colum in range(8):
@@ -68,5 +85,3 @@ def draw_board(screen):
             if piece != "":
                 screen.blit(Piece.images[piece], p.Rect(
                     colum*SQUARE, row*SQUARE, SQUARE, SQUARE))
-
-

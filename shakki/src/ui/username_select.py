@@ -1,6 +1,15 @@
 from tkinter import ttk, constants
 
 class UsernameSelect:
+
+    """Class for the username selection screen.
+
+    Attributes:
+        root: Root of the tkinter.
+        handle_game_start: Function for starting the game.
+        frame: Initializing the frame object.
+    """
+
     def __init__(self, root, handle_game_start):
         self._root = root
         self.handle_game_start = handle_game_start

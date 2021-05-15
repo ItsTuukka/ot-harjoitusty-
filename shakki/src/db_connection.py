@@ -8,4 +8,8 @@ connection.row_factory = sqlite3.Row
 
 
 def get_db_connection():
+    """Returns:
+        Connection for the database.
+    """
+
     return connection
