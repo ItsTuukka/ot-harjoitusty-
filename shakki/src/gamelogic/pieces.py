@@ -62,7 +62,6 @@ class Piece:
             s_pos: Starting postion of the piece.
             d_pos: Position where to piece is trying to move.
         """
-        self.GS.game_result = 2
         self.castle = False
         self.enpassant = False
         piece = self.gs[s_pos[1]][s_pos[0]]
@@ -138,6 +137,7 @@ class Piece:
         if rank == "K":
             if self.kingMove(s_pos, d_pos):
                 return True
+        return False
 
     def pawnMove(self, color, s_pos, d_pos, capture):
         """Move validation function for pawns.

@@ -15,11 +15,11 @@ class TestGameState(unittest.TestCase):
         self.GS = GameState()
 
     def test_startingTurn(self):
-        self.assertEqual(self.GS.moveWhite, True)
+        self.assertEqual(self.GS.move_white, True)
 
     def test_changeturn(self):
         self.GS.changeBoardState("wP", (6, 6), (6, 5), False, False)
-        self.assertEqual(self.GS.moveWhite, False)
+        self.assertEqual(self.GS.move_white, False)
 
     def test_startBoard(self):
         self.assertEqual(self.GS.boardstate, self.startingBoard)
@@ -37,11 +37,11 @@ class TestGameState(unittest.TestCase):
         self.assertEqual(self.GS.betweenDiagonally((0, 5), (2, 3)), False)
 
     def test_kingMovement(self):
-        self.assertEqual(self.GS.wKmove, False)
-        self.assertEqual(self.GS.bKmove, False)
+        self.assertEqual(self.GS.white_king_moved, False)
+        self.assertEqual(self.GS.black_king_moved, False)
         self.GS.changeBoardState("wP", (4, 6), (4, 4), False, False)
         self.GS.changeBoardState("bP", (4, 1), (4, 3), False, False)
         self.GS.changeBoardState("wK", (4, 7), (4, 6), False, False)
         self.GS.changeBoardState("bK", (4, 0), (4, 1), False, False)
-        self.assertEqual(self.GS.wKmove, True)
-        self.assertEqual(self.GS.bKmove, True)
+        self.assertEqual(self.GS.white_king_moved, True)
+        self.assertEqual(self.GS.black_king_moved, True)
