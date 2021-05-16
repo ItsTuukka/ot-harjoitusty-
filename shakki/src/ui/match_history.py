@@ -22,7 +22,7 @@ class MatchHistory:
             result = ""
             if score[2] == 1:
                 result = "1 - 0"
-            elif score[2] == 2:
+            elif score[2] == 3:
                 result = "0 - 1"
             else:
                 result = "1/2 - 1/2"

@@ -62,7 +62,7 @@ class Piece:
             s_pos: Starting postion of the piece.
             d_pos: Position where to piece is trying to move.
         """
-
+        self.GS.game_result = 2
         self.castle = False
         self.enpassant = False
         piece = self.gs[s_pos[1]][s_pos[0]]

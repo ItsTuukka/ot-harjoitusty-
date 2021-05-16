@@ -279,11 +279,11 @@ class Attack:
         if self.black_attacks[wk[1]][wk[0]] == 1:
             self.GS.white_in_check = True
             if self.Result.check_checkmate():
-                self.game_result = 3
+                self.GS.game_result = 3
         if self.white_attacks[bk[1]][bk[0]] == 1:
             self.GS.black_in_check = True
             if self.Result.check_checkmate():
-                self.game_result = 1
+                self.GS.game_result = 1
 
     def check_after(self, piece, s_pos, d_pos, copy):
         """If a move is valid otherwise, this function checks
