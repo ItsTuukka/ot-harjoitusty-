@@ -8,7 +8,7 @@ Peli toimii Python-versiolla `3.7` tai uudemmalla.
 
 ### Lataa sovellus täältä
 
-[Viikon 6 release](https://github.com/ItsTuukka/ot-harjoitusty-/releases/tag/viikko6)
+[Final release](https://github.com/ItsTuukka/ot-harjoitusty-/releases/tag/1.0.0)
 
 ### Dokumentaatio
 
