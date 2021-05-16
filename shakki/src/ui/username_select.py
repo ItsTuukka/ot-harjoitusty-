@@ -33,7 +33,7 @@ class UsernameSelect:
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
-        """For quitting the screen.
+        """For hiding the screen.
         """
 
         self._frame.destroy()

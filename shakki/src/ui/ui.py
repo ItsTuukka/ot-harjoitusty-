@@ -3,6 +3,7 @@ from ui.username_select import UsernameSelect
 from ui.end_screen import EndScreen
 from ui.match_history import MatchHistory
 
+
 class UI:
 
     """Class that handles the UI. Handles all the different screens
@@ -36,7 +37,7 @@ class UI:
         """
 
         self.show_menu()
-    
+
     def end(self, result):
         """Calls the end screen, based on the result.
 
@@ -50,7 +51,7 @@ class UI:
             self.show_end("Draw!")
         elif result == 3:
             self.show_end(self._player2 + " wins!")
-    
+
     def hide_current_view(self):
         """Hides the current screen.
         """
@@ -58,7 +59,7 @@ class UI:
         if self._current_view:
             self._current_view.destroy()
         self._current_view = None
-    
+
     def handle_start(self):
         """Calls the start function, used for a button command.
         """
@@ -76,7 +77,7 @@ class UI:
         """
 
         self.show_game_history()
-    
+
     def handle_game_start(self, player1, player2):
         """Calls the fucntion to show the game screen, used for a button command.
 
@@ -98,7 +99,7 @@ class UI:
             self.handle_game_history,
         )
         self._current_view.pack()
-    
+
     def show_username_select(self):
         """Shows the username select screen.
         """
@@ -109,7 +110,7 @@ class UI:
             self.handle_game_start
         )
         self._current_view.pack()
-    
+
     def show_game_start(self, player1, player2):
         """Shows the game view and destroyes the current tkinter root.
 
@@ -117,26 +118,27 @@ class UI:
             player1: Username for player1. 
             player2: Username for player2.
         """
-        
+
         self.hide_current_view()
         self._root.destroy()
         self.run_game(player1, player2)
-    
+
     def show_game_history(self):
         """Shows the match history.
         """
 
         history = MatchHistory(
-            self.handle_start
         )
         history.pack()
         history.start_up()
-        
-    
+
     def show_end(self, result):
         """Shows the end screen.
+
+        Args:
+            result: Result of the game.
         """
-        
+
         self.hide_current_view()
         self._current_view = EndScreen(
             self._root,
@@ -144,4 +146,3 @@ class UI:
             result
         )
         self._current_view.pack()
-    

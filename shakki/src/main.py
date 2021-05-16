@@ -58,6 +58,8 @@ def end_game(player1, player2, match_history, GS):
     Args:
         player1: Username for player1.
         player2: Username for player2.
+        match_history: Match history class.
+        GS: GameState class.
     """
 
     match_history.add_score(player1, player2, GS.game_result)
@@ -74,6 +76,8 @@ def draw_board(screen, GS, piece_class):
 
     Args:
         screen: Pygame display.
+        GS: GameState class.
+        piece_class: Piece class.
     """
 
     colors = [(235, 235, 208), (119, 148, 85)]
