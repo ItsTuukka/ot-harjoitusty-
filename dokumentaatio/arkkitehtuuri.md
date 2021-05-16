@@ -28,7 +28,21 @@ Kaikista näkymistä, paitsi pelinäkymästä, vastaa `ui` -luokka, joka asettaa
 
 ## Tietojen tallentaminen
 
-Tulossa hyvin pian.
+`MatchHistoryRepository` -luokka huolehtii tietojen tallentamisesta SQLite-tietokantaan. Tietokantaan tallennetaan jokaisen pelatun pelin jälkeen pelaajien nimet sekä pelin tulos.
+
+### Tietokanta
+
+Tietokantatiedoston nimi on määritelty [.env](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/shakki/.env) -tiedostossa, joten sen vaihtaminen on helppoa.
+
+Tietokannassa tiedot tallennetaan `match_history` -tauluun, joka on seuraavanlainen:
+
+| player1 | player2 |  result |
+| :-----: | :-----: | :-----: |
+| thuckey | makeri  |    1    |
+| thuckey | makeri  |    2    |
+| thuckey | makeri  |    3    |
+
+Tietokanta alustetaan [initialize-db.py](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/shakki/src/initialize_db.py) -tiedostossa.
 
 ## Sovelluslogiikka
 
