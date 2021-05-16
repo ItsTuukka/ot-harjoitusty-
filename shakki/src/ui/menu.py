@@ -7,10 +7,8 @@ class Menu:
     """Class for the menu screen.
 
     Attributes:
-        root: Root for tkinter. 
         handle_username_select. Function for username select.
         handle_game_history: Function for game history.
-        frame: Initializing the frame object.
     """
 
     def __init__(self, root, handle_username_select, handle_game_history):

@@ -6,9 +6,7 @@ class UsernameSelect:
     """Class for the username selection screen.
 
     Attributes:
-        root: Root for tkinter.
         handle_game_start: Function for starting the game.
-        frame: Initializing the frame object.
     """
 
     def __init__(self, root, handle_game_start):

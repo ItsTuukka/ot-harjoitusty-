@@ -10,10 +10,7 @@ class UI:
     and shows/hides views according to player input.
 
     Attributes:
-        root: Root for tkinter.
         run_game: Function that calls the main function of the game.
-        player1: Username for player1.
-        player1: Username for player2.
     """
 
     def __init__(self, root, run_game, player1=None, player2=None):

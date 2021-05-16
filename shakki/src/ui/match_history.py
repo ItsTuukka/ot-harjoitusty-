@@ -6,11 +6,6 @@ Repository = MatchHistoryRepository()
 class MatchHistory:
 
     """Class for the match history screen.
-
-    Attributes:
-        root: Root for tkinter.
-        root_title: Title for the view.
-        frame: Initializing the frame object.
     """
 
     def __init__(self):

@@ -6,10 +6,7 @@ class EndScreen:
     """Class for the end screen.
 
     Attributes:
-        root: Root for tkinter.
         handle_start: Function for starting the menu.
-        result: Result of the game.
-        frame: Initializing the frame object.
     """
 
     def __init__(self, root, handle_start, result):
