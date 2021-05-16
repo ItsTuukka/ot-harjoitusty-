@@ -19,4 +19,5 @@
 | 12.5.| 2h  | tietokannan alustus |
 | 13.5.| 4h  | match history |
 | 15.6.| 3h  | docstring ja refaktorointia |
-| Yht. | 55h  |
+| 16.6.| 5h  | projektin viimeistely |
+| Yht. | 60h  |
