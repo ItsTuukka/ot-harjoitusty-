@@ -24,7 +24,7 @@ class Attack:
         self.GS = GS
         self.Result = Result
 
-    def whiteThreatens(self, state):
+    def white_threatens(self, state):
         """Makes and updates the 2D matrix for white.
         Different functions for every rank of pieces except pawns.
 
@@ -44,27 +44,27 @@ class Attack:
                             if 0 <= column+1 <= 7:
                                 self.white_attacks[row-1][column+1] = 1
                     if piece[1] == "R":
-                        attacks = self.rookAttacks(row, column, state)
+                        attacks = self.rook_attacks(row, column, state)
                         for attack in attacks:
                             self.white_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "B":
-                        attacks = self.bishopAttacks(row, column, state)
+                        attacks = self.bishop_attacks(row, column, state)
                         for attack in attacks:
                             self.white_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "N":
-                        attacks = self.knightAttacks(row, column)
+                        attacks = self.knight_attacks(row, column)
                         for attack in attacks:
                             self.white_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "Q":
-                        attacks = self.queenAttacks(row, column, state)
+                        attacks = self.queen_attacks(row, column, state)
                         for attack in attacks:
                             self.white_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "K":
-                        attacks = self.kingAttacks(row, column)
+                        attacks = self.king_attacks(row, column)
                         for attack in attacks:
                             self.white_attacks[attack[0]][attack[1]] = 1
 
-    def blackThreatens(self, state):
+    def black_threatens(self, state):
         """Makes and updates the 2D matrix for black.
         Different functions for every rank of pieces except pawns.
 
@@ -84,27 +84,27 @@ class Attack:
                             if 0 <= column+1 <= 7:
                                 self.black_attacks[row+1][column+1] = 1
                     if piece[1] == "R":
-                        attacks = self.rookAttacks(row, column, state)
+                        attacks = self.rook_attacks(row, column, state)
                         for attack in attacks:
                             self.black_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "B":
-                        attacks = self.bishopAttacks(row, column, state)
+                        attacks = self.bishop_attacks(row, column, state)
                         for attack in attacks:
                             self.black_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "N":
-                        attacks = self.knightAttacks(row, column)
+                        attacks = self.knight_attacks(row, column)
                         for attack in attacks:
                             self.black_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "Q":
-                        attacks = self.queenAttacks(row, column, state)
+                        attacks = self.queen_attacks(row, column, state)
                         for attack in attacks:
                             self.black_attacks[attack[0]][attack[1]] = 1
                     if piece[1] == "K":
-                        attacks = self.kingAttacks(row, column)
+                        attacks = self.king_attacks(row, column)
                         for attack in attacks:
                             self.black_attacks[attack[0]][attack[1]] = 1
 
-    def rookAttacks(self, row, column, state):
+    def rook_attacks(self, row, column, state):
         """Checks all the squares that rooks attack.
 
         Args:
@@ -135,7 +135,7 @@ class Attack:
                 break
         return attacks
 
-    def bishopAttacks(self, row, column, state):
+    def bishop_attacks(self, row, column, state):
         """Checks all the squares that bishops attack.
 
         Args:
@@ -182,7 +182,7 @@ class Attack:
             i -= 1
         return attacks
 
-    def knightAttacks(self, row, column):
+    def knight_attacks(self, row, column):
         """Checks all the squares that knights attack.
 
         Args:
@@ -216,7 +216,7 @@ class Attack:
                 attacks.append((row-1, column-2))
         return attacks
 
-    def queenAttacks(self, row, column, state):
+    def queen_attacks(self, row, column, state):
         """Checks all the squares that queens attack.
         Uses the functions for rooks and bishops.
 
@@ -229,13 +229,13 @@ class Attack:
             All the squares that the piece attacks.
         """
 
-        attacks = self.rookAttacks(row, column, state)
-        diag = self.bishopAttacks(row, column, state)
+        attacks = self.rook_attacks(row, column, state)
+        diag = self.bishop_attacks(row, column, state)
         for i in diag:
             attacks.append(i)
         return attacks
 
-    def kingAttacks(self, row, column):
+    def king_attacks(self, row, column):
         """Checks all the squares that kings attack.
 
         Args:
@@ -274,13 +274,13 @@ class Attack:
         self.GS.white_in_check = False
         self.GS.black_in_check = False
         kings = self.GS.find_kings()
-        wk = kings[0]
-        bk = kings[1]
-        if self.black_attacks[wk[1]][wk[0]] == 1:
+        white_king = kings[0]
+        black_king = kings[1]
+        if self.black_attacks[white_king[1]][white_king[0]] == 1:
             self.GS.white_in_check = True
             if self.Result.check_checkmate():
                 self.GS.game_result = 3
-        if self.white_attacks[bk[1]][bk[0]] == 1:
+        if self.white_attacks[black_king[1]][black_king[0]] == 1:
             self.GS.black_in_check = True
             if self.Result.check_checkmate():
                 self.GS.game_result = 1
@@ -303,20 +303,20 @@ class Attack:
 
         kings = self.GS.find_kings()
         if piece[1] == "K" and piece[0] == "w":
-            wk = d_pos
-            bk = kings[1]
+            white_king = d_pos
+            black_king = kings[1]
         elif piece[1] == "K" and piece[0] == "b":
-            wk = kings[0]
-            bk = d_pos
+            white_king = kings[0]
+            black_king = d_pos
         else:
-            wk = kings[0]
-            bk = kings[1]
+            white_king = kings[0]
+            black_king = kings[1]
         if self.GS.move_white:
             copy[s_pos[1]][s_pos[0]] = ""
             copy[d_pos[1]][d_pos[0]] = piece
             previous = [i[:] for i in self.black_attacks]
-            self.blackThreatens(copy)
-            if self.black_attacks[wk[1]][wk[0]] == 1:
+            self.black_threatens(copy)
+            if self.black_attacks[white_king[1]][white_king[0]] == 1:
                 self.black_attacks = previous
                 return True
             self.black_attacks = previous
@@ -324,8 +324,8 @@ class Attack:
             copy[s_pos[1]][s_pos[0]] = ""
             copy[d_pos[1]][d_pos[0]] = piece
             previous = [i[:] for i in self.white_attacks]
-            self.whiteThreatens(copy)
-            if self.white_attacks[bk[1]][bk[0]] == 1:
+            self.white_threatens(copy)
+            if self.white_attacks[black_king[1]][black_king[0]] == 1:
                 self.white_attacks = previous
                 return True
             self.white_attacks = previous

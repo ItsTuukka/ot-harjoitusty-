@@ -186,13 +186,13 @@ class GameState:
             Tuple, containing coordinates for the kings.
         """
 
-        wk = ""
-        bk = ""
+        white_king = ""
+        black_king = ""
         for row in range(8):
             for column in range(8):
                 piece = self.boardstate[row][column]
                 if piece == "wK":
-                    wk = (column, row)
+                    white_king = (column, row)
                 if piece == "bK":
-                    bk = (column, row)
-        return (wk, bk)
+                    black_king = (column, row)
+        return (white_king, black_king)

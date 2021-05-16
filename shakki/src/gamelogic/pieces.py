@@ -83,8 +83,8 @@ class Piece:
         """Runs the functions that are needed after a valid move.
         """
 
-        self.A.whiteThreatens(self.gs)
-        self.A.blackThreatens(self.gs)
+        self.A.white_threatens(self.gs)
+        self.A.black_threatens(self.gs)
         self.A.check()
         self.Result.check_stalemate()
         self.Result.insufficient_material()
@@ -120,26 +120,26 @@ class Piece:
             if capture[0] == color or capture[1] == "K":
                 return False
         if rank == "P":
-            if self.pawnMove(color, s_pos, d_pos, capture):
+            if self.pawn_move(color, s_pos, d_pos, capture):
                 return True
         if rank == "N":
-            if self.knightMove(s_pos, d_pos):
+            if self.knight_move(s_pos, d_pos):
                 return True
         if rank == "B":
-            if self.bishopMove(s_pos, d_pos):
+            if self.bishop_move(s_pos, d_pos):
                 return True
         if rank == "R":
-            if self.rookMove(s_pos, d_pos):
+            if self.rook_move(s_pos, d_pos):
                 return True
         if rank == "Q":
-            if self.queenMove(s_pos, d_pos):
+            if self.queen_move(s_pos, d_pos):
                 return True
         if rank == "K":
-            if self.kingMove(s_pos, d_pos):
+            if self.king_move(s_pos, d_pos):
                 return True
         return False
 
-    def pawnMove(self, color, s_pos, d_pos, capture):
+    def pawn_move(self, color, s_pos, d_pos, capture):
         """Move validation function for pawns.
 
         Args:
@@ -180,7 +180,7 @@ class Piece:
                     return True
         return False
 
-    def rookMove(self, s_pos, d_pos):
+    def rook_move(self, s_pos, d_pos):
         """Move validation function for rooks.
 
         Args:
@@ -201,7 +201,7 @@ class Piece:
             return True
         return False
 
-    def knightMove(self, s_pos, d_pos):
+    def knight_move(self, s_pos, d_pos):
         """Move validation function for knights.
 
         Args:
@@ -218,7 +218,7 @@ class Piece:
             return True
         return False
 
-    def bishopMove(self, s_pos, d_pos):
+    def bishop_move(self, s_pos, d_pos):
         """Move validation function for bishop.
 
         Args:
@@ -235,7 +235,7 @@ class Piece:
             return True
         return False
 
-    def queenMove(self, s_pos, d_pos):
+    def queen_move(self, s_pos, d_pos):
         """Move validation function for queens.
 
         Args:
@@ -260,7 +260,7 @@ class Piece:
             return True
         return False
 
-    def kingMove(self, s_pos, d_pos):
+    def king_move(self, s_pos, d_pos):
         """Move validation function for kings.
 
         Args:
