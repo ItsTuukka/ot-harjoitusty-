@@ -18,4 +18,5 @@
 | 4.5. | 4h  | ui, refaktorointia ja testejä |
 | 12.5.| 2h  | tietokannan alustus |
 | 13.5.| 4h  | match history |
-| Yht. | 52h  |
+| 15.6.| 3h  | docstring ja refaktorointia |
+| Yht. | 55h  |
