@@ -34,7 +34,7 @@ poetry run invoke start
 
 Peli käynnistyy päävalikkoon:
 
-![mainmenu](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/kuvat/mainmenu2.png)
+![mainmenu](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/kuvat/new_mainmenu.png)
 
 Painamalla "Start Game" -painiketta pääset syöttämään pelaajien nimet.
 
