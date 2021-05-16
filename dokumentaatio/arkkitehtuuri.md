@@ -69,4 +69,7 @@ Siirron jälkeen sovellus kysyy, onko shakkimatti alla näkyvällä tavalla.
 
 Siirron logiikka on hyvin pitkä ja monimutkainen projekti, joten sen selittäminen on jätetty pois.
 
+## Rakenteeseen jääneet heikkoukset.
 
+Koska pelin sovelluslogiikka, ei ole tehty abstrakteilla luokilla on peliä haastavaa laajentaa. Tämä johtaa myös toisto koodiin ja liian moneen "if" haaraan.
+Varsinkin eri nappulat olisi pitänyt tehdä näillä luokilla.
