@@ -123,6 +123,9 @@ class UI:
         self.run_game(player1, player2)
     
     def show_game_history(self):
+        """Shows the match history.
+        """
+
         history = MatchHistory(
             self.handle_start
         )
@@ -131,6 +134,9 @@ class UI:
         
     
     def show_end(self, result):
+        """Shows the end screen.
+        """
+        
         self.hide_current_view()
         self._current_view = EndScreen(
             self._root,

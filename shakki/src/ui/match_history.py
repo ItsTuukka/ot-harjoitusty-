@@ -18,15 +18,15 @@ class MatchHistory:
     def initialize(self):
         self._frame = ttk.Frame(master=self._root)
         scores = Repository.find_all()
-        for score in scores:
+        for i in range(len(scores)-1, -1, -1):
             result = ""
-            if score[2] == 1:
+            if scores[i][2] == 1:
                 result = "1 - 0"
-            elif score[2] == 3:
+            elif scores[i][2] == 3:
                 result = "0 - 1"
             else:
                 result = "1/2 - 1/2"
-            game = f'{score[0]} {result} {score[1]}'
+            game = f'(W) {scores[i][0]} {result} {scores[i][1]} (B)'
             label = ttk.Label(master=self._frame, text=game, font="italic 13 bold")
             label.grid(pady=10)
         

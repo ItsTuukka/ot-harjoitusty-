@@ -26,9 +26,9 @@ class Piece:
         loads images of the pieces to a dictionary.
 
         Args:
-            GS: GameState class
-            Attack: Attack class
-            Result: Result class
+            GS: GameState class.
+            Attack: Attack class.
+            Result: Result class.
         """
 
         self.GS = GS

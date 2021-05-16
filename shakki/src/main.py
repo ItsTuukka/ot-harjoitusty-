@@ -7,13 +7,7 @@ from gamelogic.attack import Attack
 from gamelogic.chesslib import Result
 from ui.ui import UI
 from repositories.match_history_repository import MatchHistoryRepository
-clock = p.time.Clock()
 FPS = 30
-GS = GameState()
-Result = Result(GS)
-A = Attack(GS, Result)
-Piece = Piece(GS, A, Result)
-match_history = MatchHistoryRepository()
 WIDTH = HEIGHT = 512
 SQUARE = HEIGHT // 8
 
@@ -26,6 +20,12 @@ def main(player1, player2):
         player2: Username for player2.
     """
 
+    clock = p.time.Clock()
+    GS = GameState()
+    result = Result(GS)
+    A = Attack(GS, result)
+    piece = Piece(GS, A, result)
+    match_history = MatchHistoryRepository()
     p.init()
     screen = p.display.set_mode((WIDTH, HEIGHT))
     player_clicks = []
@@ -42,16 +42,17 @@ def main(player1, player2):
                     else:
                         player_clicks.append(pos_sq)
                 if len(player_clicks) == 2:
-                    Piece.movePiece(player_clicks[0], player_clicks[1])
+                    piece.movePiece(player_clicks[0], player_clicks[1])
                     player_clicks = []
-        draw_board(screen)
+        draw_board(screen, GS, piece)
         clock.tick(FPS)
-        if GS.game_result:
-            end_game(player1, player2)
         p.display.flip()
+        if GS.game_result:
+            end_game(player1, player2, match_history, GS)
+            break
 
 
-def end_game(player1, player2):
+def end_game(player1, player2, match_history, GS):
     """Sends game information to be saved and calls end game screen.
 
     Args:
@@ -68,7 +69,7 @@ def end_game(player1, player2):
     window.mainloop()
 
 
-def draw_board(screen):
+def draw_board(screen, GS, piece_class):
     """Draws the board, squares and pieces.
 
     Args:
@@ -83,5 +84,5 @@ def draw_board(screen):
                 colum*SQUARE, row*SQUARE, SQUARE, SQUARE))
             piece = GS.boardstate[row][colum]
             if piece != "":
-                screen.blit(Piece.images[piece], p.Rect(
+                screen.blit(piece_class.images[piece], p.Rect(
                     colum*SQUARE, row*SQUARE, SQUARE, SQUARE))
