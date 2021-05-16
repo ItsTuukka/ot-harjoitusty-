@@ -50,7 +50,12 @@ Sovelluslogiikan luokkakaavio on seuraavanlainen:
 
 ![luokkakaavio](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/kuvat/luokkakaavio.png)
 
-Kaikki luokat tarvitsevat `GameState` -luokkaa, jotta ne pysyvät mukana laudan tilasta pelin edetessä. Luokat ovat erittäin sidoksissa toisiinsa ja kutsuvat toisiaan ainakin kerran per siirto. Poikkeus on `Result` -luokka joka vastaa vain pelin tuloksen tarkistamisesta joka siirron jälkeen
+`GameState` -luokka vastaa pelin/laudan tilanteesta ja päivittää niitä pelin edetessä.
+`Attack` -luokka luo ja päivittää 2D matriiseja ruuduista joita uhataan. Molemmilla väreillä on omat matriisit.
+`Piece` -luokka vastaa kaikista nappuloiden toiminnallisuuksista.
+`Result` -luokka tarkistaa onko peli ohi jokaisen siirron jälkeen.
+
+Kaikki luokat tarvitsevat `GameState` -luokkaa, jotta ne pysyvät mukana laudan tilasta pelin edetessä. Luokat ovat erittäin sidoksissa toisiinsa ja kutsuvat toisiaan ainakin kerran per siirto. Poikkeus on `Result` -luokka joka vastaa vain pelin tuloksen tarkistamisesta joka siirron jälkeen.
 
 ## Toiminnallisuudet
 
@@ -62,4 +67,6 @@ Siirron jälkeen sovellus kysyy, onko shakkimatti alla näkyvällä tavalla.
 `Piece` -luokka tarkistaa siirron jälkeen `Attack` -luokalta onko siirto aiheuttanut shakin. `Attack` -luokka kysyy kuninkaiden sijainnin `GameState` -luokalta ja tämän jälkeen tarkistaa onko shakki. Shakin ollessa `Attack` -luokka lähettää siitä tiedon `GameState` -luokalle ja kysyy `Result` -luokalta onko shakkimatti ja tämä vastaa True tai False riippuen onko vai ei.
 
 
-Siirron logiikka on hyvin pitkä ja monimutkainen projekti (johtuen myös omasta osaamisesta, tai sen puutteesta), joten sen selittäminen on jätetty pois.
+Siirron logiikka on hyvin pitkä ja monimutkainen projekti, joten sen selittäminen on jätetty pois.
+
+
