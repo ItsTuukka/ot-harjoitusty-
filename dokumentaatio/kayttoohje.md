@@ -57,4 +57,11 @@ Kun peli päättyy, joko shakkimattiin tai erinäisiin tasapeli skenaarioihin, n
 
 Tästä voi palta takaisin päävalikkoon painamalla "Back to main menu" -painiketta tai lopettaa pelin painamalla rastia.
 
+## Pelattujen pelien tarkastelu
 
+Pelaajien käyttäjänimet sekä pelin tulos tallentuu tietokantaan. Pelattuja pelejä voi tarkastella päävalikosta painamalla "Match History" -painiketta.
+Peli historia avautuu omaan ikkunaan ja näyttää seuraavalta:
+
+![match_history](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/kuvat/match_history.png)
+
+Pelatut pelit näkyvät järjestyksessä aina uusin ylimpänä.
