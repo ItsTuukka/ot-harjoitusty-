@@ -4,6 +4,14 @@ Lataa projektin viimeisin [release](https://github.com/ItsTuukka/ot-harjoitusty-
 
 Siirry komentorivillä projektista löytyvään shakki -kansioon ja suorita kaikki ohjelmaan liittyvät komennot sieltä.
 
+## Konfigurointi
+
+Pelien tulokset tallennetaan sqlite-tietokantaan. Voit halutessasi vaihtaa tuon paikallisen tietokantatiedoston nimeä muokkaamalla shakki -kansiosta löytyvää .env -tiedostoa, mutta suosittelen kuitenkin säilyttämään data/ -alkuliitteen nimessä, jolloin tiedosto pysyy data -kansiossa. Oletuksena tiedoston sisältö on seuraavanlainen:
+
+```
+DB=data/db.sqlite
+```
+
 ## Ohjelman käynnistäminen
 
 Ennen pelin ensimmäistä käynnistystä suorita seuraavat komennot
