@@ -16,6 +16,7 @@ Peli toimii Python-versiolla `3.7` tai uudemmalla.
 - [Arkkitehtuurikuvaus](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/arkkitehtuuri.md)
 - [Työaikakirjanpito](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/ty%C3%B6aikakirjanpito.md)
 - [Käyttöohje](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/kayttoohje.md)
+- [Testausdokumentti](https://github.com/ItsTuukka/ot-harjoitusty-/blob/master/dokumentaatio/testausdokumentti.md)
 
 ### Asennus
 
