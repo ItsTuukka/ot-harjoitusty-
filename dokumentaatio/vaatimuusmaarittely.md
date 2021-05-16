@@ -10,7 +10,7 @@ Pelaajat voivat
 - [x] pelata shakkia
 - [x] valita nimimerkit
 - [x] valita värin
-- tarkastella aiempien pelien tuloksia (kuka voitti ja millä värillä)
+- [x] tarkastella aiempien pelien tuloksia
 
 ## Jatkokehitysideoita
 
