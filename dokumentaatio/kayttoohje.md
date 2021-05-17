@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa projektin viimeisin [release](https://github.com/ItsTuukka/ot-harjoitusty-/releases/tag/viikko6) itsellesi.
+Lataa projektin viimeisin [release](https://github.com/ItsTuukka/ot-harjoitusty-/releases/tag/1.0.0) itsellesi.
 
 Siirry komentorivillä projektista löytyvään shakki -kansioon ja suorita kaikki ohjelmaan liittyvät komennot sieltä.
 
